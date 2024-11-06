@@ -8,11 +8,10 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { getBannerApi } from '../../services/index'
 
   const title = ref('Hello')
 
-  getBannerApi().then(res => console.log(res)).catch(error => console.error(error))
+  
 
 </script>
 
