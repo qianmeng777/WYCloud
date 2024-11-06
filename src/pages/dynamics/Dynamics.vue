@@ -14,7 +14,6 @@
 import { ref } from 'vue'
 import content1 from './component/content1.vue'
 import content2 from './component/content2.vue'
-const content = [content1,content2]
 const curindex = ref(0)
 </script>
 
@@ -29,9 +28,5 @@ const curindex = ref(0)
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  span{
-    flex: 1;
-    text-align: center;
-  }
 }
 </style>
