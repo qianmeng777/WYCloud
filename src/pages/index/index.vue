@@ -4,16 +4,19 @@
 
   const title = ref('Hello')
 
-  const getBanner = async () => {
-    try {
-      const res = await getBannerApi()
-      console.log(res)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const getBanner = async () => {
+  //   try {
+  //     const res = await getBannerApi()
+  //     console.log(res)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
-  getBanner()
+  // getBanner()
+
+  getBannerApi().then(res => console.log(res))
+
 </script>
 
 

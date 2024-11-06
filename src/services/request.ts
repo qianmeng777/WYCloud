@@ -5,18 +5,18 @@ interface Params {
   header?: any
 }
 
+const base = 'https://zyxcl.xyz/music/api'
+
 const request = ({
   url,
   method = "GET",
-  data = {},
-  header = {}
+  data = {}
 }: Params) => {
   return new Promise((resolve, reject) => {
     uni.request({
-      url,
+      url: base + url,
       method,
       data,
-      header,
       success: (res) => {
         resolve(res)
       },
