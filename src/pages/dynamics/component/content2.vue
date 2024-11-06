@@ -1,5 +1,18 @@
 <script setup>
-import {} from 'vue'
+import { ref, onMounted } from 'vue'
+import { getrecommend } from '../../../services/index'
+
+const recommend = ref([])
+
+onMounted(async () => {
+  try {
+    const res = await getrecommend()
+    console.log(res.data.data)
+    recommend.value = res.data.data
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 </script>
 
