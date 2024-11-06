@@ -21,9 +21,6 @@
 		{
 			"path": "pages/Mine/Mine"
 			
-		},
-        {
-			"path": "pages/icon"
 		}
 	],
 	"tabBar": {
@@ -69,7 +66,8 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "网易云音乐",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#FF0000",
 		"backgroundColor": "#F8F8F8"
 	}
+	
 }
