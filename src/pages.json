@@ -2,14 +2,8 @@
 	"entryPagePath": "pages/recommend/Recommend",
 	"pages": [
 		{
-			"path": "pages/index/index"
+			"path": "pages/recommend/Recommend"
 			
-				
-		},
-		{
-			"path": "pages/dynamics/Dynamics"
-			
-				
 		},
 		{
 			"path": "pages/find/Find"
@@ -20,8 +14,9 @@
 		
 		},
 		{
-			"path": "pages/recommend/Recommend"
+			"path": "pages/dynamics/Dynamics"
 			
+				
 		},
 		{
 			"path": "pages/Mine/Mine"
