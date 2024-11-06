@@ -1,3 +1,22 @@
+<script setup lang="ts">
+  import { ref } from 'vue'
+  import { getBannerApi } from '../../services/index'
+
+  const title = ref('Hello')
+
+  const getBanner = async () => {
+    try {
+      const res = await getBannerApi()
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  getBanner()
+</script>
+
+
 <template>
   <view class="content">
     <image class="logo" src="/static/logo.png" />
@@ -7,10 +26,6 @@
   </view>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Hello')
-</script>
 
 <style>
 .content {
