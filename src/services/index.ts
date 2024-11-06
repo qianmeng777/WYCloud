@@ -179,3 +179,9 @@ export const recommendSongsApi = () => {
   })
 }
 
+
+
+
+export const getPageApi = () => {
+  return request({ url: '/homepage/block/page' })
+}
