@@ -3,27 +3,18 @@
 	"pages": [
 		{
 			"path": "pages/recommend/Recommend"
-			
 		},
 		{
 			"path": "pages/find/Find"
-			
 		},
 		{
 			"path": "pages/roam/Roam"
-		
 		},
 		{
 			"path": "pages/dynamics/Dynamics"
-			
-				
 		},
 		{
 			"path": "pages/Mine/Mine"
-			
-		},
-        {
-			"path": "pages/icon"
 		}
 	],
 	"tabBar": {
@@ -61,11 +52,8 @@
 				"iconPath": "static/xuegao-01.png",
 				"selectedIconPath": "static/xuegao-01.png"
 			}
-
-
 		]	
 	},
-
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "网易云音乐",
