@@ -2,52 +2,42 @@
 	"entryPagePath": "pages/recommend/Recommend",
 	"pages": [
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/index/index"
+			
 				
 		},
 		{
-			"path": "pages/dynamics/Dynamics",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/dynamics/Dynamics"
+			
 				
 		},
 		{
-			"path": "pages/find/Find",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/find/Find"
+			
 		},
 		{
-			"path": "pages/roam/Roam",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/roam/Roam"
+		
 		},
 		{
-			"path": "pages/recommend/Recommend",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/recommend/Recommend"
+			
 		},
 		{
-			"path": "pages/Mine/Mine",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/Mine/Mine"
+			
 		}
 	],
 	"tabBar": {
 		"color": "#999999",
-		"selectedColor": "#333333",
+		"selectedColor": "#FF0000",
 		"borderStyle": "black",
 		"list": [
 			{
 				"pagePath": "pages/recommend/Recommend",
-				"text": "推荐"
+				"text": "推荐",
+				"iconPath": "/icon_9yfv07kvv2n/icon_9yfv07kvv2n/bangbangtang-01.png"
+
 			},
 			{
 				"pagePath": "pages/find/Find",

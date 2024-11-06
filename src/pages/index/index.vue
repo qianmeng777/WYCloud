@@ -15,7 +15,7 @@
 
   // getBanner()
 
-  getBannerApi().then(res => console.log(res))
+  getBannerApi().then(res => console.log(res)).catch(error => console.error(error));
 
 </script>
 
