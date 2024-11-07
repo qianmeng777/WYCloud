@@ -52,7 +52,14 @@
 })
 
   const goDetail = (item) => {
-    console.log('goDetail')
+    uni.navigateTo ({
+      url: '/pages/find/views/BannerDetail'
+    })
+  }
+  const goTopDetail = (id) => {
+    uni.navigateTo ({
+      url: '/pages/find/views/TopDetail'
+    })
   }
   const text = (num) => {
     return num.map(item => {
@@ -124,7 +131,7 @@
         <scroll-view class="scroll" scroll-x>
           <view class="list">
             <view class="listItem" v-for="item in topList">
-              <image :src="item.coverImgUrl"></image>
+              <image :src="item.coverImgUrl" @click="goTopDetail(id)"></image>
               <view class="th">
                 <view>{{ (String(text(item.tracks))).replace(/,/g, "、") }}</view>
                 <view class="play"><image src="../../../static/bofang.png"></image></view>
