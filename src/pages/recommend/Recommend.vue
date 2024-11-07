@@ -38,6 +38,7 @@
     // console.log(res.data.recommend)
     resource.value = res.data.recommend
     console.log(resource.value)
+  
 
   } catch (error) {
     console.error(error)
