@@ -5,10 +5,10 @@
     <view class="login">立即登录 ></view>
     <view class="desc">
     <view class="center">
-      <p>关注</p>
-      <p>粉丝</p>
-      <p>等级</p>
-      <p>听歌</p>
+      <view class="p">关注</view>
+      <view class="p">粉丝</view>
+      <view class="p">等级</view>
+      <view class="p">听歌</view>
     </view>
     </view>
   </view>
@@ -73,7 +73,7 @@
   justify-content: center;
   align-items: center;
   padding: 0 40rpx;
-  p{
+  .p{
     margin: 0 40rpx;
     font-size: 28rpx;
     font-weight: 900;
