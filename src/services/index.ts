@@ -16,7 +16,7 @@ export const recommendSongsApi = () => {
 //// 歌曲
 export const getSongsApi = (id:number) => {
   return request({
-    url: `/songs/url`,
+    url: '/song/url',
     data:{
       id
     }
