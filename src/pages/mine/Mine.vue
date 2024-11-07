@@ -36,6 +36,7 @@
   const curIndex = ref(0)
 
   const tabs = ['音乐', '博客', '动态']
+  
 </script>
 
 <style lang="scss" scoped>
