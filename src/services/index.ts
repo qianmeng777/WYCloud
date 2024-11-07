@@ -30,7 +30,12 @@ export const getListApi = () => {
   return request({ url: '/playlist/highquality/tags' })
 }
 
+//歌手
 
+
+export const getListsonger = () => {
+  return request({ url: '/top/artists?offset=0&limit=30' })
+}
 // 推荐歌单
 export const topPlaylistApi = (data = {}) => {
   return request({ url: '/top/playlist', data })
