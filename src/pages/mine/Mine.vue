@@ -75,6 +75,7 @@
   p{
     margin: 0 40rpx;
     font-size: 28rpx;
+    font-weight: 900;
     background: linear-gradient(to right, #00B4D8, #006B8E); /* 渐变背景 */
     -webkit-background-clip: text;  /* 需要前缀 */
     background-clip: text;  /* 标准属性 */
@@ -108,6 +109,7 @@
   display: flex;
   align-items: center;
   background-color: #f4f4f4;
+  border-radius: 30rpx 30rpx 0 0;
   p{
     margin: 0 60rpx;
     font-size: 32rpx;
