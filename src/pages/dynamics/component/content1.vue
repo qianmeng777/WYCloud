@@ -18,14 +18,16 @@ onMounted(async () => {
     
     <view class="com-title">
         <view class="com-title-left">
-            <img src="../../../static/yuemi.png">
+            <image :src="titlelist[15]?.img1v1Url"/>
             <text>乐迷团</text>
         </view>    
-        <scroll-view class="con">
-          <view class="con-item" v-for="(item,index) in titlelist">
+        <scroll-view class="con" scroll-x>
+          <view class="qwe">
+            <view class="con-item" v-for="(item,index) in titlelist">
             <image :src="item.img1v1Url"/>
             <text>{{item.name}}</text>
           </view>
+        </view>
         </scroll-view>
     </view>
 
@@ -64,6 +66,6 @@ onMounted(async () => {
 
                  }
                 }
-    }
+         }
 }
 </style>
