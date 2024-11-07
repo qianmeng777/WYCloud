@@ -4,7 +4,6 @@
           <input type="text" placeholder="搜索喜欢的音乐">
         <view class="voice"></view>
       </view>
-
       <view class="main">
         <view class="first">
           <view class="h3">
@@ -18,7 +17,7 @@
                   <p>{{ item.name}}</p>
                 </view>
               </view>
-            </scroll-view>
+            </scroll-view>  
           </view>
         </view>
         <view class="recommendList">
