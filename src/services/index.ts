@@ -16,7 +16,7 @@ export const recommendSongsApi = () => {
 //// 歌曲
 export const getSongsApi = (id:number) => {
   return request({
-    url: `/songs/url`,
+    url: '/song/url',
     data:{
       id
     }
@@ -208,4 +208,9 @@ export const voicelistApi = () => {
 // 新歌速递
 export const getNewSongApi = () => {
   return request({ url: '/top/song?type=0' })
+}
+
+
+export const getAagspi = () => {
+  return request({ url: '/playlist/highquality/tags' })
 }
