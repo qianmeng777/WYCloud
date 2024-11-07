@@ -1,19 +1,21 @@
 <template>
-  <view class="roam">漫游
+  <view class="roam">
      <view class="big">
          <view class="img">
-          <img :src="resource[curindex]?.al.picUrl">
+          <image :src="resource[curindex]?.al.picUrl"/>
          </view>
      </view>
     <view class="list">
          <view class="title">
-          <h5>{{ resource[curindex]?.al.name }}</h5>
+          <h3>{{ resource[curindex]?.al.name }}</h3>
           <text>{{ resource[curindex]?.ar[0].name }}</text>
          </view>
         </view>
     <view class="btn">
-          <text @click="curindex--"><</text>
-          <text @click="curindex++">></text>
+          <uni-icons type="left" size="50" @click="prev"></uni-icons>
+          <button @click="play">播放</button>
+          <uni-icons type="right" size="50" @click="next"></uni-icons>
+          
          </view>
   </view>
 
@@ -23,35 +25,90 @@
 </template>
 
 <script setup>
- import { ref,onMounted } from 'vue'
- import { recommendSongsApi} from '../../services/index'
+ import { ref,onMounted,onUnmounted } from 'vue'
+ import { recommendSongsApi,getSongsApi} from '../../services/index'
+
+ const open=ref("true")
 
  const resource = ref([])
- const curindex = ref(3)
+ let curindex = ref(3)
+ const curid=ref(0)
+ const songurl= ref('')
+ 
+ const innerAudioContext = uni.createInnerAudioContext();
+innerAudioContext.autoplay = true;
+innerAudioContext.src = '';
+innerAudioContext.onPlay(() => {
+  console.log('开始播放');
+});
 
-onMounted(async () => {
-try {
-  const res = await recommendSongsApi()
-  console.log(res.data.data.dailySongs  )
-  resource.value = res.data.data.dailySongs
-  // console.log(resource.value)
 
+const play = () => {
+  innerAudioContext.src=''
+ 
 
-} catch (error) {
-  console.error(error)
 }
-})
+const next= () => {
+  curindex.value++
+  fetchRecommendSongs(),
+  fetchSongUrl()
+  innerAudioContext.src=songurl.value
+  
+}
+const prev= () => {
+  curindex.value--
+  fetchRecommendSongs(),
+  fetchSongUrl()
+  innerAudioContext.src=songurl.value
+
+}
+
+
+const fetchRecommendSongs = async () => {
+  try {
+    const res = await recommendSongsApi();
+    console.log(res.data.data.dailySongs);
+    resource.value = res.data.data.dailySongs;
+    if (resource.value.length > 0) {
+      curid.value = resource.value[curindex.value].id;
+      console.log(curid.value);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+const fetchSongUrl = async () => {
+  try {
+    if (curid.value) {
+      const res = await getSongsApi(curid.value);
+      console.log(res.data.data[0].url);
+      songurl.value = res.data.data[0].url;
+      console.log(songurl.value);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+onMounted(
+  
+  fetchRecommendSongs(),
+  fetchSongUrl()
+)
+
 </script>
 
 <style lang="scss" scoped>
-
+.title{
+  text-align: center;
+  margin-bottom: 10px;
+}
   
 
 .roam{
   box-sizing: border-box;
   width:100vw;
   height:100vh;
- 
+ padding-top: 50px;
   background: rgb(104,77,56);
   .big{
     box-sizing: border-box;
@@ -70,7 +127,7 @@ try {
       border-radius: 50%;
       background: red;
       overflow: hidden;
-      img{
+      image{
         width: 100%;
         height: 100%;
       }
