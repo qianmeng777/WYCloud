@@ -17,7 +17,9 @@
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
-      "outputPath": ""
+      "outputPath": "",
+      "ignoreDevUnusedFiles": false ,
+     "ignoreUploadUnusedFiles": false
     }
   },
   "condition": {},
