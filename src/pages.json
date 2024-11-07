@@ -65,6 +65,11 @@
 		"navigationBarTitleText": "网易云音乐",
 		"navigationBarBackgroundColor": "#FF0000",
 		"backgroundColor": "#F8F8F8"
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
 	}
-	
 }
