@@ -6,6 +6,13 @@ export const getBannerApi = () => {
 export const getrecommend = () => {
   return request({ url: '/recommend/songs' })
 }
+// 每日推荐
+export const recommendSongsApi = () => {
+  return request({
+    url: `/recommend/songs`
+  })
+}
+
 // 首页
 export const homepageApi = () => {
   return request({ url: '/homepage/block/page' })
@@ -182,16 +189,9 @@ export const voicelistApi = () => {
   })
 }
 
-// 每日推荐
-export const recommendSongsApi = () => {
-  return request({
-    url: `/recommend/songs`
-  })
-}
 
 
-
-
-export const getPageApi = () => {
-  return request({ url: '/homepage/block/page' })
+// 新歌速递
+export const getNewSongApi = () => {
+  return request({ url: '/top/song?type=0' })
 }

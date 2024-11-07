@@ -4,7 +4,7 @@ import { getrecommend } from '../../../services/index'
 
 const recommend = ref([])
 
-onMounted(async () => {
+async () => {
   try {
     const res = await getrecommend()
     console.log(res.data.data)
@@ -12,12 +12,21 @@ onMounted(async () => {
   } catch (error) {
     console.error(error)
   }
-})
+}
 
 </script>
 
 <template>
-<h1>2</h1>
+<view class="content">
+    <view class="item" v-for="(item, index) in recommend" :key="index">
+        <view class="item-img">
+        <image :src="item.al.picUrl" mode="aspectFill" />
+        </view>
+        <view class="item-info">
+        <view class="item-title">{{ item.name }}</view>
+        </view>
+    </view>
+</view>
 </template>
 
 <style scoped lang='scss'>
