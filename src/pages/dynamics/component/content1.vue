@@ -15,6 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
+    
     <view class="com-title">
         <view class="com-title-left">
             <img src="../../../static/yuemi.png">
@@ -22,7 +23,7 @@ onMounted(async () => {
         </view>    
         <scroll-view class="con">
           <view class="con-item" v-for="(item,index) in titlelist">
-            <img src="../../../static/yuemi.png">
+            <image :src="item.img1v1Url"/>
             <text>{{item.name}}</text>
           </view>
         </scroll-view>
@@ -33,22 +34,36 @@ onMounted(async () => {
 <style scoped lang='scss'>
 .com-title{
     width: 100vw;
-    height:100rpx;
+    height:150rpx;
    
     display: flex;
    .com-title-left{
         width: 100rpx;
         height: 150rpx;
         margin-left: 20rpx;
-        img{
+        image{
             width: 100rpx;
             height: 100rpx;
             border-radius: 50%;
 
         }
         }
-    .con{
+    .qwe{
         flex: 1;
+        display: flex;
+
+       
+        .con-item{
+            width: 100rpx;
+            height: 150rpx;
+            margin-left: 20rpx; 
+            image{
+                width: 100rpx;
+                height: 100rpx;
+                border-radius: 50%;
+
+                 }
+                }
     }
 }
 </style>
