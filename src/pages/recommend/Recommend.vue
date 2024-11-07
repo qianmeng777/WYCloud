@@ -1,23 +1,24 @@
   <template>
       <view class="top">
         <view class="menu"></view>
-          <input type="text" placeholder="搜索喜欢的音乐">
+          <input type="text" placeholder="搜索喜欢的音乐" @click="navigateToSearchPage">
         <view class="voice"></view>
       </view>
       <view class="main">
         <view class="first">
           <view class="h3">
-            下午好
+            {{greeting}}
           </view>
           <view class="dayRec">
-            <scroll-view enable-flex scroll-x type="list">
+            <scroll-view  scroll-x>
               <view class="firstlist">
                 <view class="listItem" v-for="item in resource">
                   <image :src="item.creator.avatarUrl"></image>
                   <p>{{ item.name}}</p>
+                  <view class="play"><image src="../../static/bofang.png"></image></view>
                 </view>
               </view>
-            </scroll-view>  
+            </scroll-view>
           </view>
         </view>
         <view class="recommendList">
@@ -31,6 +32,7 @@
                   <image :src="item.coverImgUrl"></image>
                   <view class="name">{{ item.name}}</view>
                   <view class="palyCount">{{ formatPlayCount(item.playCount) }}</view>
+                  <view class="play"><image src="../../static/bofang.png"></image></view>
                 </view>
               </view>
             </scroll-view>
@@ -51,6 +53,7 @@
                       <view v-for="i in item.ar" class="Infosname">{{ i.name}}</view>
                     </view>
                   </view>
+                  <view class="likePlay"><image src="../../static/播放5.png"></image></view>
                 </view>
               </view>
             </scroll-view>
@@ -62,14 +65,27 @@
   <script setup lang="ts">
     import { ref,onMounted,computed } from 'vue'
     import { getResourceApi,topPlaylistApi,recommendSongsApi} from '../../services/index'
-
+    import { defineComponent } from 'vue';
     const resource = ref([])
     const topPlaylist = ref([])
     const recommendSongs = ref([])
 
 
     // getBannerApi().then(res => console.log(res)).catch(error => console.error(error))
-    
+   
+    const greeting = computed(() => {
+  const hour = new Date().getHours();
+  if (hour < 12) return '上午好';
+  if (hour < 18) return '下午好';
+  return '晚上好';
+});
+
+    const navigateToSearchPage = () => {
+      uni.navigateTo({
+        url: '/pages/input/Input' 
+      });
+    };
+
   const getResource = async () => {
     try {
       const res = await getResourceApi();
@@ -185,11 +201,11 @@
       .firstlist{
         margin-right: 100rpx;
         display: flex;
-        width: 100%;
-        justify-content: flex-start;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+        // width: 100%;
+        // justify-content: flex-start;
+        // margin: 0;
+        // padding: 0;
+        // box-sizing: border-box;
       // overflow: hidden;
         .listItem{
           width: 300rpx;
@@ -204,6 +220,16 @@
           background: #959595;
           border-radius: 20rpx;
           color: white;
+          .play{
+            width: 30rpx;
+            height: 30rpx;
+            image{
+              width: 60rpx;
+              height: 60rpx;
+              bottom: 160rpx;
+              right: 110rpx;
+            }
+          }
           image{
             width: 300rpx;
             height: 300rpx;
@@ -247,6 +273,17 @@
           color: white;
           text-overflow: ellipsis;
           position: relative;
+          .play{
+            position: absolute;
+            width: 30rpx;
+            height: 30rpx;
+            right: 20rpx;
+            bottom: 120rpx;
+            image{
+              width: 40rpx;
+              height: 40rpx;
+            }
+          }
           .palyCount{
             position: absolute;
             left: 20rpx;
@@ -301,6 +338,18 @@
       width: 650rpx;
       height: 120rpx;
       display: flex;
+      position: relative;
+      .likePlay{
+        width: 40rpx;
+        height: 40rpx;
+        position: absolute;
+        right: 30rpx;
+        top: 22rpx;
+        image{
+          width: 40rpx;
+          height: 40rpx;
+        }
+      }
       image{
         width: 100rpx;
         height: 100rpx;

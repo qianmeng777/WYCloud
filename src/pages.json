@@ -23,6 +23,9 @@
 			"path": "pages/Mine/Mine"
 		},
 		{
+			"path": "pages/input/Input"
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationStyle": "custom"
