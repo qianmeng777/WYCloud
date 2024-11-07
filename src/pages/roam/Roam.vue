@@ -10,11 +10,16 @@
           <h5>{{ resource[curindex]?.al.name }}</h5>
           <text>{{ resource[curindex]?.ar[0].name }}</text>
          </view>
-         <view class="right">
+        </view>
+    <view class="btn">
+          <text @click="curindex--"><</text>
+          <text @click="curindex++">></text>
          </view>
-        
-    </view>
   </view>
+
+  
+
+
 </template>
 
 <script setup>
@@ -74,5 +79,18 @@ try {
 }
 .list{
   padding: 0 40rpx;
+ 
 }
+.btn{
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text{
+    font-size: 100rpx;
+  }
+
+}
+
 </style>

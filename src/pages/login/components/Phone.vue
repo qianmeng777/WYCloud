@@ -1,7 +1,5 @@
 <template>
-<view class="header">
-电话登录
-</view>
+<view class="header">电话登录</view>
 </template>
 
 <style lang='scss' scoped>

@@ -1,7 +1,5 @@
 <template>
-<view class="header">
-邮箱登录
-</view>
+<view class="header">邮箱登录</view>
 </template>
 
 <style lang='scss' scoped>
