@@ -22,8 +22,8 @@ onMounted(async () => {
             <text>乐迷团</text>
         </view>    
         <scroll-view class="con" scroll-x>
-          <view class="qwe">
-            <view class="con-item" v-for="(item,index) in titlelist">
+        <view class="qwe">
+    <view class="con-item" v-for="(item,index) in titlelist">
             <image :src="item.img1v1Url"/>
             <text>{{item.name}}</text>
           </view>
