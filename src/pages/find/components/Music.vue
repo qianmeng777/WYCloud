@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { bannerApi, topPlaylistApi } from '../../../services/index'
+  import { bannerApi, topPlaylistApi, getNewSongApi } from '../../../services/index'
 
   const banners = ref([])
   const selectPlaylist = ref([])
@@ -9,7 +9,7 @@
   onMounted(async () => {
   try {
     const res = await bannerApi()
-    console.log(res)
+    // console.log(res)
     banners.value = res.data.banners
   } catch (error) {
     console.error(error)
@@ -17,9 +17,17 @@
 
   try {
     const res = await topPlaylistApi()
-    console.log(res.data.playlists)
+    // console.log(res.data.playlists)
     selectPlaylist.value = res.data.playlists.slice(0,6)
     newPlaylist.value = res.data.playlists.slice(6,11)
+  } catch (error) {
+    console.error(error)
+  }
+
+  try {
+    const res = await getNewSongApi()
+    console.log(res)
+
   } catch (error) {
     console.error(error)
   }
@@ -58,6 +66,20 @@
     <view class="tit">云村新鲜事</view>
     <view class="new">
       <view class="newCon">
+        <scroll-view class="scroll" scroll-x>
+          <view class="list">
+            <view class="listItem" v-for="item in newPlaylist">
+              <image :src="item.coverImgUrl"></image>
+              <view>{{ item.name}}</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class="tit">新歌新碟</view>
+    <view class="newSong">
+      <view class="newSongCon">
         <scroll-view class="scroll" scroll-x>
           <view class="list">
             <view class="listItem" v-for="item in newPlaylist">
