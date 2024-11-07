@@ -4,46 +4,84 @@
         <input type="text" placeholder="搜索喜欢的音乐">
       <view class="voice"></view>
     </view>
+
     <view class="main">
       <view class="first">
-        <h3>
-          晚上好
-        </h3>
+        <view class="h3">
+          上午好
+        </view>
         <view class="dayRec">
-          <scroll-view scroll-x>
-            <ul >
-              <li v-for="item in resource">
+          <scroll-view enable-flex scroll-x>
+            <view class="firstlist">
+              <view class="listItem" v-for="item in resource">
                 <image :src="item.creator.avatarUrl"></image>
                 <p>{{ item.name}}</p>
-              </li>
-            </ul>
+              </view>
+            </view>
           </scroll-view>
         </view>
-    </view>
+      </view>
+      <view class="recommendList">
+        <view class="h3">
+          推荐歌单
+        </view>
+        <view class="recommend">
+          <scroll-view enable-flex scroll-x>
+            <view class="recommendlist">
+              <view class="recListItem" v-for="item in topPlaylist">
+                <image :src="item.coverImgUrl"></image>
+                <view class="name">{{ item.name}}</view>
+                <view class="palyCount">{{ formatPlayCount(item.playCount) }}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+
+      </view>
     </view>
 </template>
 
 <script setup lang="ts">
-  import { ref,onMounted } from 'vue'
-  import { getBannerApi } from '../../services/index'
-  import { getResourceApi} from '../../services/index'
+  import { ref,onMounted,computed } from 'vue'
+  import { getResourceApi,topPlaylistApi} from '../../services/index'
 
   const resource = ref([])
+  const topPlaylist = ref([])
 
   // getBannerApi().then(res => console.log(res)).catch(error => console.error(error))
-  onMounted(async () => {
-  try {
-    const res = await getResourceApi()
-    // console.log(res.data.recommend)
-    resource.value = res.data.recommend
-    console.log(resource.value)
   
+const getResource = async () => {
+  try {
+    const res = await getResourceApi();
+    resource.value = res.data.recommend;
+    console.log(resource.value);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
+const getTopPlaylist = async () => {
+  try {
+    const res = await topPlaylistApi()
+    topPlaylist.value = res.data.playlists
+    console.log(topPlaylist.value)
   } catch (error) {
     console.error(error)
   }
-})
+};
+onMounted(async () => {
+    await getResource();
+    await getTopPlaylist();
+  });
+
+  const formatPlayCount = (playCount) => {
+  return (playCount / 10000).toFixed(1) + '万';
+};
+
 </script>
+
+
+
 
 <style lang="scss" scoped>
 
@@ -97,18 +135,23 @@ input{
   line-height: 60rpx;
 }
 .main{
-  overflow: hidden;
+  overflow: auto;
   height: calc(100vh - 320rpx); // 减去头部的高度
   padding: 10rpx 30rpx;
   margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
 }
 
 .first{
   height: 400rpx;
   // background: #712d2d;
+  .h3{
+    font-size: 50rpx;
+  }
   .dayRec{
-    ul{
-      margin-right: 50px;
+    .firstlist{
+      margin-right: 100rpx;
       display: flex;
       width: 100%;
       justify-content: flex-start;
@@ -116,12 +159,12 @@ input{
       padding: 0;
       box-sizing: border-box;
     // overflow: hidden;
-      li{
+      .listItem{
         width: 300rpx;
         height: 400rpx;
         background: #ccc;
         margin-top: 20rpx;
-        margin-right: 20px;
+        margin-right: 40rpx;
         // white-space: nowrap;
         display: flex;
         flex-direction: column;
@@ -133,6 +176,71 @@ input{
           width: 300rpx;
           height: 300rpx;
           border-radius: 20rpx;
+        }
+      }
+    }
+  }
+  
+}
+
+.recommendList{
+  height: 400rpx;
+  // background: #712d2d;
+  margin-top: 100rpx;
+  .h3{
+    font-size: 30rpx;
+  }
+  .recommend{
+    .recommendlist{
+      margin-right: 100rpx;
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    // overflow: hidden;
+      .recListItem{
+        width: 200rpx;
+        height: 300rpx;
+        background: white;
+        margin-top: 20rpx;
+        margin-right: 40rpx;
+        // white-space: nowrap;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        // background: #959595;
+        border-radius: 20rpx;
+        color: white;
+        text-overflow: ellipsis;
+        position: relative;
+        .palyCount{
+          position: absolute;
+          left: 20rpx;
+          background: url(../../static/耳机.png) no-repeat left center;
+          background-size:30rpx;
+          padding-left: 30rpx;
+          padding-bottom: 3rpx;
+          color: white;
+        }
+        image{
+          width: 200rpx;
+          height: 200rpx;
+          border-radius: 20rpx;
+        }
+        .name{
+          color: #000000;
+          font-size: 24rpx;
+          height: 70rpx;
+          width: 200rpx;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          // white-space: nowrap;
+          margin-top: 10rpx;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
         }
       }
     }
