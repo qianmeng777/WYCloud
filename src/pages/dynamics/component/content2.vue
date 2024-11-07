@@ -17,16 +17,16 @@ async () => {
 </script>
 
 <template>
-<view class="content">
-    <view class="item" v-for="(item, index) in recommend" :key="index">
-        <view class="item-img">
-        <image :src="item.al.picUrl" mode="aspectFill" />
-        </view>
-        <view class="item-info">
-        <view class="item-title">{{ item.name }}</view>
-        </view>
-    </view>
-</view>
+<view>
+		<uni-fab
+			:pattern="pattern"
+			:content="content"
+			:horizontal="horizontal"
+			:vertical="vertical"
+			:direction="direction"
+			@trigger="trigger"
+		></uni-fab>
+	</view>
 </template>
 
 <style scoped lang='scss'>
