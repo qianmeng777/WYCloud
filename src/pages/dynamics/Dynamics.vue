@@ -1,4 +1,6 @@
 <template>
+  <view class="main">
+
   <view class="title">
     <text @click="curindex=0" :class="{ 'active': curindex===0 }">关注</text>|
     <text @click="curindex=1" :class="{ 'active': curindex===1 }">推荐</text>
@@ -6,6 +8,8 @@
   <view class="content">
     <content1 v-if="curindex==0"/>
     <content2 v-else/>
+
+  </view>
 
   </view>
 </template>
@@ -21,7 +25,13 @@ const curindex = ref(0)
 .active{
   color: red;
 }
-.title{
+.main{
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  flex-direction: column;
+  .title{
   width: 100px;
   height: 40px;
   line-height: 40px;
@@ -29,4 +39,12 @@ const curindex = ref(0)
   justify-content: space-around;
   margin: 0 auto;
 }
+.content{
+ flex: 1;
+
+}
+
+}
+
+
 </style>

@@ -39,17 +39,17 @@ try {
 </script>
 
 <style lang="scss" scoped>
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
+  
+
 .roam{
+  box-sizing: border-box;
   width:100vw;
   height:100vh;
  
   background: rgb(104,77,56);
   .big{
+    box-sizing: border-box;
     width:600rpx;
     height:600rpx;
     padding: 100rpx;
