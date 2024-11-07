@@ -12,7 +12,6 @@
         <view class="dayRec">
           <scroll-view scroll-x>
             <ul >
-              
               <li v-for="item in resource">
                 <image :src="item.creator.avatarUrl"></image>
                 <p>{{ item.name}}</p>
