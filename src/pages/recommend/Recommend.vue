@@ -141,13 +141,13 @@
     color: white;
     display: flex;
     width: 100vw;
-    height: 90rpx;
+    height: 45rpx;
     // justify-content: center;
     align-items: center;
     justify-content: space-around;
-    position: fixed; 
-    top: 88rpx; 
-    left: 0; 
+    // position: fixed; 
+    // top: 88rpx; 
+    // left: 0; 
   }
   .menu{
     width: 50rpx;
