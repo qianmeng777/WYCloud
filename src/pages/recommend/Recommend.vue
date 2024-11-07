@@ -8,7 +8,7 @@
       <view class="main">
         <view class="first">
           <view class="h3">
-            上午好
+            下午好
           </view>
           <view class="dayRec">
             <scroll-view enable-flex scroll-x type="list">
