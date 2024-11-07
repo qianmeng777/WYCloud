@@ -5,6 +5,7 @@
   const banners = ref([])
   const selectPlaylist = ref([])
   const newPlaylist = ref([])
+  const newSonglist = ref([])
 
   onMounted(async () => {
   try {
@@ -26,8 +27,8 @@
 
   try {
     const res = await getNewSongApi()
-    console.log(res)
-
+    console.log(res.data.data)
+    newSonglist.value = res.data.data.slice(0,12)
   } catch (error) {
     console.error(error)
   }
@@ -79,16 +80,17 @@
 
     <view class="tit">新歌新碟</view>
     <view class="newSong">
-      <view class="newSongCon">
-        <scroll-view class="scroll" scroll-x>
-          <view class="list">
-            <view class="listItem" v-for="item in newPlaylist">
-              <image :src="item.coverImgUrl"></image>
-              <view>{{ item.name}}</view>
+      <scroll-view class="newSongCon" scroll-x>
+        <view class="newSongList">
+          <view class="newSongItem" v-for="item in newSonglist">
+            <image :src="item.album.picUrl"></image>
+            <view class="right">
+              <view class="song">{{ item.album.name }}</view>
+              <view class="singer">{{ item.album.company}}-{{item.album.subType}}-{{item.album.artists[0].name }}</view>
             </view>
           </view>
-        </scroll-view>
-      </view>
+        </view>
+      </scroll-view>
     </view>
   </view>
 
@@ -97,6 +99,8 @@
 <style lang="scss" scoped>
   .page{
     padding: 0 10px;
+    height: 100vh;
+    overflow: auto;
   }
 
   .con{
@@ -117,9 +121,9 @@
     margin-top: 15px;
   }
 
-  .select , .new{
+  .select , .new , .newSong{
   height: 300rpx;
-    .selectCon , .newCon{
+    .selectCon , .newCon {
       .list{
         display: flex;
         width: 100%;
@@ -150,5 +154,40 @@
         }
       }
     }  
+  }
+
+  .newSongCon{
+    height: 340rpx;
+    margin-top: 10px;
+  }
+  .newSongList{
+    display: flex;
+    width: 2600rpx;
+    height: 340rpx;
+    flex-wrap: wrap;
+  }
+  .newSongItem{
+    width: 650rpx;
+    margin-bottom: 5px;
+    height: 100rpx;
+    display: flex;
+    image{
+      width: 100rpx;
+      height: 100rpx;
+    }
+    view{
+      margin-left: 10px;
+    }
+  }
+  .song{
+    color: black;
+    font-weight: 900;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .singer{
+    font-size: 10px;
+    color:gray;
+    margin-top: 5px;
   }
 </style>
