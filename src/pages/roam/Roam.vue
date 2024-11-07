@@ -2,7 +2,7 @@
   <view class="roam">漫游
      <view class="big">
          <view class="img">
-          <img :src="resource[curindex]?.al.picUrl">
+          <image :src="resource[curindex]?.al.picUrl"/>
          </view>
      </view>
     <view class="list">
@@ -12,8 +12,8 @@
          </view>
         </view>
     <view class="btn">
-          <text @click="curindex--"><</text>
-          <text @click="curindex++">></text>
+          <!-- <text @click="curindex--">&lt;</text> -->
+          <text @click="curindex++">&gt;</text>
          </view>
   </view>
 
@@ -28,19 +28,35 @@
 
  const resource = ref([])
  const curindex = ref(3)
+// const 
+// const innerAudioContext = uni.createInnerAudioContext();
+// innerAudioContext.autoplay = true;
+// innerAudioContext.src = 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3';
+// innerAudioContext.onPlay(() => {
+//   console.log('开始播放');
+// });
+// innerAudioContext.onError((res) => {
+//   console.log(res.errMsg);
+//   console.log(res.errCode);
+// });
+
+
+
+
 
 onMounted(async () => {
 try {
   const res = await recommendSongsApi()
   console.log(res.data.data.dailySongs  )
   resource.value = res.data.data.dailySongs
-  // console.log(resource.value)
+  console.log(resource.value)
 
 
 } catch (error) {
   console.error(error)
 }
 })
+
 </script>
 
 <style lang="scss" scoped>
@@ -70,7 +86,7 @@ try {
       border-radius: 50%;
       background: red;
       overflow: hidden;
-      img{
+      image{
         width: 100%;
         height: 100%;
       }
