@@ -47,7 +47,11 @@ const tabs = ['音乐', '博客', '听书', '直播']
     border-bottom: 2px solid red;
   }
   .tabs{
-    width: 200px;
+    position: fixed;
+    overflow: hidden;
+    z-index: 9;
+    background: #FFF;
+    width: 100%;
     height: 40px;
     line-height: 40px;
     display: flex;
