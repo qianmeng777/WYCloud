@@ -2,6 +2,7 @@
   <!-- 头部区域 -->
   <view class="header">
     <view class="avatar"></view>
+    <view class="login">立即登录 ></view>
     <view class="desc">
     <view class="center">
       <p>关注</p>
@@ -117,6 +118,17 @@
 }
 }
 
+
+.login {
+  position: relative;
+  top: 15%;
+  left: 42%;
+  width: 150rpx;
+  height: 50rpx;
+  font-size: 28rpx;
+  font-weight: 900;
+  color: white;
+}
 
 
 
