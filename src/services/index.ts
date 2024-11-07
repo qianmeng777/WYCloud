@@ -200,3 +200,8 @@ export const voicelistApi = () => {
 export const getNewSongApi = () => {
   return request({ url: '/top/song?type=0' })
 }
+
+
+export const getAagspi = () => {
+  return request({ url: '/playlist/highquality/tags' })
+}

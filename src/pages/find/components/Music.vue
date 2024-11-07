@@ -1,11 +1,11 @@
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { bannerApi, topPlaylistApi, getNewSongApi } from '../../../services/index'
-
+  import { bannerApi, topPlaylistApi, getNewSongApi,getAagspi } from '../../../services/index'
   const banners = ref([])
   const selectPlaylist = ref([])
   const newPlaylist = ref([])
   const newSonglist = ref([])
+  const newBalllist = ref([])
 
   onMounted(async () => {
   try {
@@ -29,6 +29,14 @@
     const res = await getNewSongApi()
     console.log(res.data.data)
     newSonglist.value = res.data.data.slice(0,12)
+  } catch (error) {
+    console.error(error)
+  }
+
+  try {
+    const res = await getAagspi()
+    console.log(res.data)
+    newBalllist.value = res.data.data
   } catch (error) {
     console.error(error)
   }
