@@ -17,12 +17,12 @@ onMounted(async () => {
 <template>
     <view class="com-title">
         <view class="com-title-left">
-            <img src="../../../static/yuemi.png">
+            <image src="../../../static/可乐.png"/>
             <text>乐迷团</text>
         </view>    
         <scroll-view class="con">
           <view class="con-item" v-for="(item,index) in titlelist">
-            <img src="../../../static/yuemi.png">
+           
             <text>{{item.name}}</text>
           </view>
         </scroll-view>
@@ -40,7 +40,7 @@ onMounted(async () => {
         width: 100rpx;
         height: 150rpx;
         margin-left: 20rpx;
-        img{
+        image{
             width: 100rpx;
             height: 100rpx;
             border-radius: 50%;
