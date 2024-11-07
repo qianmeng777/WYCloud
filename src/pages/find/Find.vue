@@ -42,7 +42,9 @@ const tabs = ['音乐', '博客', '听书', '直播']
 
 <style lang="scss" scoped>
   .active{
-    color: green;
+    color: black;
+    font-weight: 900;
+    border-bottom: 2px solid red;
   }
   .tabs{
     width: 200px;
@@ -51,5 +53,6 @@ const tabs = ['音乐', '博客', '听书', '直播']
     display: flex;
     justify-content: space-around;
     margin: 0 auto;
+    color: gray;
   }
 </style>
