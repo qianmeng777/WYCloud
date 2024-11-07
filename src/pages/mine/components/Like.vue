@@ -10,6 +10,17 @@
           </view>
       </view>
     </view>
+
+    <!-- 新建歌单 -->
+    <view class="like">
+      <view class="like1">
+          <view class="like-pic"><img src="https://p1.music.126.net/9-rm4PUkKuL-lD1Rgg6SDw==/109951165434984508.jpg" alt=""></view>
+          <view class="like-content">
+            <view class="like-title">新建歌单</view>
+          </view>
+      </view>
+    </view>
+
 </view>
 </template>
 
@@ -22,8 +33,6 @@
 .like{
   height: 120rpx;
   width: 100%;
-  border-top: 1px solid #dcdcdc; 
-  border-bottom: 1px solid #dcdcdc; 
   margin-top: 30rpx;
   display: flex;
   justify-content: center;
@@ -32,8 +41,8 @@
 .like1{
   height: 80rpx;
   width: 90%;
-  display: flex;           /* 使用 Flexbox */
-  align-items: center;     /* 垂直居中对齐 */
+  display: flex;
+  align-items: center;
 }
 
 .like-pic{
