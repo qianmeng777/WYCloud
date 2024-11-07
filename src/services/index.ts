@@ -13,6 +13,15 @@ export const recommendSongsApi = () => {
   })
 }
 
+//// 歌曲
+export const getSongsApi = (id:number) => {
+  return request({
+    url: `/songs/url`,
+    data:{
+      id
+    }
+  })
+}
 // 首页
 export const homepageApi = () => {
   return request({ url: '/homepage/block/page' })

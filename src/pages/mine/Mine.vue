@@ -2,7 +2,7 @@
   <!-- 头部区域 -->
   <view class="header">
     <view class="avatar"></view>
-    <view class="login">立即登录 ></view>
+    <navigator url="/pages/login/login" class="login">立即登录 ></navigator>
     <view class="desc">
     <view class="center">
       <view class="p">关注</view>
