@@ -1,21 +1,25 @@
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { getBannerApi, getPageApi } from '../../../services/index'
+  import { bannerApi, topPlaylistApi } from '../../../services/index'
 
   const banners = ref([])
+  const selectPlaylist = ref([])
+  const newPlaylist = ref([])
 
   onMounted(async () => {
   try {
-    const res = await getBannerApi()
+    const res = await bannerApi()
     console.log(res)
     banners.value = res.data.banners
   } catch (error) {
     console.error(error)
   }
+
   try {
-    const res = await getPageApi()
-    console.log(res)
-    // banners.value = res.data.banners
+    const res = await topPlaylistApi()
+    console.log(res.data.playlists)
+    selectPlaylist.value = res.data.playlists.slice(0,6)
+    newPlaylist.value = res.data.playlists.slice(6,11)
   } catch (error) {
     console.error(error)
   }
@@ -27,25 +31,102 @@
 </script>
 
 <template>
-  <view>音乐</view>
 
-  <view class="con">
-    <swiper class="swiper" autoplay interval="3000" duration="500">
-      <swiper-item v-for="item in banners" :key="item.targetId">
-        <image class="img" :src="item.imageUrl" mode="widthFix" @click="goDetail(item)"/>
-      </swiper-item>
-    </swiper>
+  <view class="page">
+    <view class="con">
+      <swiper class="swiper" autoplay interval="3000" duration="500">
+        <swiper-item v-for="item in banners" :key="item.targetId">
+          <image class="img" :src="item.imageUrl" mode="widthFix" @click="goDetail(item)"/>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="tit">甄选歌单</view>
+    <view class="select">
+      <view class="selectCon">
+        <scroll-view class="scroll" scroll-x>
+          <view class="list">
+            <view class="listItem" v-for="item in selectPlaylist">
+              <image :src="item.coverImgUrl"></image>
+              <view>{{ item.name}}</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class="tit">云村新鲜事</view>
+    <view class="new">
+      <view class="newCon">
+        <scroll-view class="scroll" scroll-x>
+          <view class="list">
+            <view class="listItem" v-for="item in newPlaylist">
+              <image :src="item.coverImgUrl"></image>
+              <view>{{ item.name}}</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
   </view>
+
 </template>
 
 <style lang="scss" scoped>
+  .page{
+    padding: 0 10px;
+  }
+
   .con{
     width: 100%;
+    margin-top: 5px;
   }
   .swiper{
-    height: 276rpx;
+    height: 264rpx;
   }
   .img{
     width: 100%;
+    object-fit: cover;
+  }
+
+  .tit{
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 15px;
+  }
+
+  .select , .new{
+  height: 300rpx;
+    .selectCon , .newCon{
+      .list{
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+        .listItem{
+          width: 250rpx;
+          height: 300rpx;
+          margin-right: 10px;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          border-radius: 20rpx;
+          image{
+            width: 200rpx;
+            height: 200rpx;
+            border-radius: 20rpx;
+          }
+          view{
+            color: black;
+            font-size: 12px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* 限制在一个块元素显示的文本的行数 */
+            overflow: hidden; /* 隐藏超出的内容 */
+            text-overflow: ellipsis; /* 溢出时显示省略号 */
+          }
+        }
+      }
+    }  
   }
 </style>
