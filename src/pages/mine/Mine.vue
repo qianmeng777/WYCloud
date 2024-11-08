@@ -1,9 +1,9 @@
 <template>
   <!-- 头部区域 -->
-  <view class="header" :style="{ backgroundImage: `url(${userStore.profile.backgroundUrl})` }">
-    <image v-if="userStore.profile && userStore.profile.avatarUrl" :src="userStore.profile.avatarUrl" class="avatar" />
-    <navigator v-if="!userStore.profile" url="/pages/login/login" class="login">立即登录 ></navigator>
-    <view v-else class="username">{{ userStore.profile.nickname || '用户名' }}</view> <!-- 显示用户名 -->
+  <view class="header" :style="{ backgroundImage: userStore.profile && userStore.profile.backgroundUrl ? `url(${userStore.profile.backgroundUrl})` : 'url(../../static/15419466901131584.png)' }">
+    <image :src="userStore.profile && userStore.profile.avatarUrl ? userStore.profile.avatarUrl : '../../static/草莓.png'" class="avatar" />
+    <navigator url="/pages/login/login" class="login">立即登录 ></navigator>
+    <view  class="username">{{ userStore.profile ? userStore.profile.nickname || '用户名' : '用户名' }}</view> <!-- 显示用户名 -->
     <view class="desc">
     <view class="center">
       <view class="p">关注</view>
@@ -13,7 +13,6 @@
     </view>
     </view>
   </view>
-
 
 <view class="tab">
   <view class="center1"  v-for="(item, index) in tabs" @click="curIndex=index" :class="{ 'active': curIndex===index }">
@@ -25,7 +24,6 @@
   <Blog v-if="curIndex===1" />
   <DynamicState v-if="curIndex===2" />
 </view>
-
 
 <!-- 定位区 -->
 <view class="cbl"></view>
@@ -84,7 +82,7 @@
 .desc{
   height: 50rpx;
   width: 100%;
-  margin-top: 200rpx;
+  margin-top: 100rpx;
 }
 
 .center{
@@ -149,15 +147,13 @@
   height: 50rpx;
   font-size: 28rpx;
   font-weight: 900;
-  color: white;
+  color: #000;
 }
 
 .username{
-  position: relative;
-  top: 15%;
-  left: 35%;
   width: 100%;
   height: 50rpx;
+  margin: 120rpx 0 0 280rpx;
   font-size: 35rpx;
   font-weight: 900;
   background: linear-gradient(to right, red, violet, yellow, green, blue, indigo);

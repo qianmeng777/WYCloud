@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { getLoginUserInfo, userDetailApi, userPlaylistApi } from '../services/user' // 引入接口
 
 export const useUserStore = defineStore('user',() => {
-  const profile = ref({})
+  const profile = ref(null)
   const account = ref({})
   const cookie = uni.getStorageSync('curCookie')
 
