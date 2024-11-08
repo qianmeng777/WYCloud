@@ -14,7 +14,12 @@
 			"path": "pages/find/Find"
 		},
 		{
-			"path": "pages/roam/Roam"
+			"path": "pages/roam/Roam",
+			"style": {
+					"navigationBarBackgroundColor": "#D6A7E5", 
+					"navigationBarTitleText": "♥专属于你的音乐♥", 
+					"navigationBarTextStyle": "white" 
+				}
 		},
 		{
 			"path": "pages/dynamics/Dynamics"
@@ -69,6 +74,7 @@
 				"text": "动态",
 				"iconPath": "static/paobing-01.png",
 				"selectedIconPath": "static/paobing-01.png"
+				
 			},
 			{
 				"pagePath": "pages/Mine/Mine",
