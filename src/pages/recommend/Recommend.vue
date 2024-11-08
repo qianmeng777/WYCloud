@@ -65,13 +65,13 @@
       </view>
       <view class="footer">
         <view class="img" @click="goRoam">
-            <image></image>图片
+            <image :src="currentSongInfo.songImg"></image>图片12312313
         </view>
         <view class="songInfo" @click="goRoam">
-           <view class="songName">Dehors(外面)</view>
-           <view class="songer"> - JORDANN</view>
+          <view class="songName">{{ currentSongInfo.songName }}</view>
+          <view class="songer"> - {{ currentSongInfo.singer }}</view>
         </view>
-        <view class="image">
+        <view class="image" @click="handlePlayClick(item)">
             <image src="../../static/播放.png"></image>
         </view>
         <view><uni-icons type="bars" size="30"></uni-icons></view>
@@ -82,13 +82,30 @@
     import { ref,onMounted,computed } from 'vue'
     import { getResourceApi,topPlaylistApi,recommendSongsApi} from '../../services/index'
     import { defineComponent } from 'vue';
+    import { useAudioStore } from '../../stores/music';
+
+
     const resource = ref([])
     const topPlaylist = ref([])
     const recommendSongs = ref([])
-
+    // const songs = ref([])
+    // const curid=ref(0)
 
     // getBannerApi().then(res => console.log(res)).catch(error => console.error(error))
    
+   // 推荐页面脚本部分
+
+
+const audioStore = useAudioStore();
+
+
+const currentSongInfo = computed(() => ({
+  songName: audioStore.songName,
+  singer: audioStore.singer,
+  songImg: audioStore.songImg
+}));
+
+
     const greeting = computed(() => {
   const hour = new Date().getHours();
   if (hour < 12) return '上午好';
@@ -130,11 +147,22 @@
     } catch (error) {
       console.error(error)
     }
-  };
+  }
+  // const getSongs = async () => {
+  // try {
+  //   const res = await getSongsApi(curid.value)
+  //   songs.value = res.data.data.dailySongs
+  //   console.log(songs.value)
+  // } catch (error) {
+  //   console.error(error)
+  // }
+  
+  // };
   onMounted(async () => {
       await getResource();
       await getTopPlaylist();
-      await getRecommendSongs();
+      await getRecommendSongs()
+
     });
     // await Promise.all([getResource(), getTopPlaylist(), getRecommendSongs()]);
 
@@ -148,6 +176,29 @@
         url: '/pages/roam/Roam' 
       });
   };
+
+
+// 添加处理 likePlay 点击事件的方法
+const handlePlayClick = (item) => {
+  if (!item) {
+    console.error('Item is undefined');
+    return;
+  }
+  if (!item.ar || item.ar.length === 0) {
+    console.error('Item artist information is missing');
+    return;
+  }
+  // 如果当前没有播放，或者点击的是不同的歌曲，则播放新歌曲
+  if (!audioStore.playing || audioStore.songName !== item.name) {
+    audioStore.updateSongInfo(item.name, item.ar[0].name, item.al?.picUrl ?? item.al.picUrl);
+    audioStore.play();
+  } else {
+    // 如果当前歌曲正在播放，点击则暂停
+    audioStore.togglePlayPause();
+  }
+};
+
+
   </script>
 
 
@@ -185,7 +236,7 @@
   }
   .menu{
     width: 50rpx;
-    height: 50rpx;
+    height: 50rpx; 
     // background: #712d2d;
     background: url(../../static/汉堡.png) no-repeat  center ;
     background-size: 40rpx;
@@ -445,6 +496,11 @@
         border-radius: 50%;
         margin-left: 20rpx;
         border: 10rpx solid #000000;
+        image{
+            width: 70rpx;
+            height: 70rpx;
+            border-radius: 50%;
+        }
 
     }
     .songInfo{
