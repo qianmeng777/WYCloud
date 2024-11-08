@@ -84,8 +84,8 @@
             </swiper-item>
         </swiper>
     </view>
-
-    <view class="footer">
+    <Player />
+    <!-- <view class="footer">
         <view class="img" @click="goRoam">
             <image></image>图片
         </view>
@@ -97,14 +97,14 @@
             <image src="../../static/播放.png"></image>
         </view>
         <view><uni-icons type="bars" size="30"></uni-icons></view>
-    </view>
+    </view> -->
 </view>   
 </template>
 
 <script setup>
 import { ref,onMounted,onUnmounted } from 'vue'
 import { gethHotApi,toplistApi,playlistDetailApi } from '../../services/index'
-
+import Player from '../../components/Player.vue';
 const hotSearch = ref([]);
 const topList = ref([]);
 const Detail = ref([]);

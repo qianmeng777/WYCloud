@@ -1,4 +1,5 @@
-  <template>  
+  <template>
+    <view class="recommend">
       <view class="top">
         <view class="tops">
           <view class="menu"></view>
@@ -63,26 +64,18 @@
             </scroll-view>
           </view>
       </view>
-      <view class="footer">
-        <view class="img" @click="goRoam">
-            <image :src="currentSongInfo.songImg"></image>图片12312313
-        </view>
-        <view class="songInfo" @click="goRoam">
-          <view class="songName">{{ currentSongInfo.songName }}</view>
-          <view class="songer"> - {{ currentSongInfo.singer }}</view>
-        </view>
-        <view class="image" @click="handlePlayClick(item)">
-            <image src="../../static/播放.png"></image>
-        </view>
-        <view><uni-icons type="bars" size="30"></uni-icons></view>
+      <Player />
     </view>
+      
+
   </template>
 
   <script setup lang="ts">
     import { ref,onMounted,computed } from 'vue'
     import { getResourceApi,topPlaylistApi,recommendSongsApi} from '../../services/index'
     import { defineComponent } from 'vue';
-    import { useAudioStore } from '../../stores/music';
+    import Player from '../../components/Player.vue';
+    // import { useAudioStore } from '../../stores/music';
 
 
     const resource = ref([])
@@ -91,19 +84,18 @@
     // const songs = ref([])
     // const curid=ref(0)
 
-    // getBannerApi().then(res => console.log(res)).catch(error => console.error(error))
    
    // 推荐页面脚本部分
 
 
-const audioStore = useAudioStore();
+// const audioStore = useAudioStore();
 
 
-const currentSongInfo = computed(() => ({
-  songName: audioStore.songName,
-  singer: audioStore.singer,
-  songImg: audioStore.songImg
-}));
+// const currentSongInfo = computed(() => ({
+//   songName: audioStore.songName,
+//   singer: audioStore.singer,
+//   songImg: audioStore.songImg
+// }));
 
 
     const greeting = computed(() => {
@@ -171,32 +163,32 @@ const currentSongInfo = computed(() => ({
   };
 
 
-  const goRoam = () => {
-      uni.switchTab({
-        url: '/pages/roam/Roam' 
-      });
-  };
+  // const goRoam = () => {
+  //     uni.switchTab({
+  //       url: '/pages/roam/Roam' 
+  //     });
+  // };
 
 
-// 添加处理 likePlay 点击事件的方法
-const handlePlayClick = (item) => {
-  if (!item) {
-    console.error('Item is undefined');
-    return;
-  }
-  if (!item.ar || item.ar.length === 0) {
-    console.error('Item artist information is missing');
-    return;
-  }
-  // 如果当前没有播放，或者点击的是不同的歌曲，则播放新歌曲
-  if (!audioStore.playing || audioStore.songName !== item.name) {
-    audioStore.updateSongInfo(item.name, item.ar[0].name, item.al?.picUrl ?? item.al.picUrl);
-    audioStore.play();
-  } else {
-    // 如果当前歌曲正在播放，点击则暂停
-    audioStore.togglePlayPause();
-  }
-};
+// // 添加处理 likePlay 点击事件的方法
+// const handlePlayClick = (songInfo) => {
+//   if (!songInfo) {
+//     console.error('Song info is undefined');
+//     return;
+//   }
+//   if (!songInfo.ar || songInfo.ar.length === 0) {
+//     console.error('Song artist information is missing');
+//     return;
+//   }
+//   // 如果当前没有播放，或者点击的是不同的歌曲，则播放新歌曲
+//   if (!audioStore.playing || audioStore.songName !== songInfo.songName) {
+//     audioStore.updateSongInfo(songInfo.songName, songInfo.ar[0].name, songInfo.songImg);
+//     audioStore.play();
+//   } else {
+//     // 如果当前歌曲正在播放，点击则暂停
+//     audioStore.togglePlayPause();
+//   }
+// };
 
 
   </script>
@@ -205,7 +197,15 @@ const handlePlayClick = (item) => {
 
 
   <style lang="scss" scoped>
-
+.recommend{
+  width: 100vw;
+  background: #f5f5f5;
+  // overflow: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // height: calc(100vh - 10rpx); // 减去头部的高度
+}
   li{
     list-style: none;
   }
@@ -214,7 +214,7 @@ const handlePlayClick = (item) => {
     color: white;
     display: flex;
     width: 100vw;
-    height: 50rpx;
+    height: 90rpx;
     // justify-content: center;
     align-items: center;
     justify-content: space-around;
@@ -268,11 +268,14 @@ const handlePlayClick = (item) => {
     line-height: 60rpx;
   }
   .main{
+    flex: 1;
     overflow: auto;
+    width: 100vw;
     // height: 100vh;
-    height: calc(100vh - 400rpx); // 减去头部的高度
+    height: calc(100vh - 800rpx); // 减去头部的高度
+    // height: 100vh;
     padding: 10rpx 30rpx;
-    margin-top: 40rpx;
+    // margin-top: 40rpx;
     display: flex;
     flex-direction: column;
   }
@@ -280,6 +283,7 @@ const handlePlayClick = (item) => {
   .first{
     height: 400rpx;
     // background: #712d2d;
+    margin-top: 40rpx;
     .h3{
       font-size: 50rpx;
     }

@@ -50,6 +50,7 @@
 		"color": "#999999",
 		"selectedColor": "#FF0000",
 		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
 		"list": [
 			{
 				"pagePath": "pages/recommend/Recommend",
