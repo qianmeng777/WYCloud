@@ -13,13 +13,8 @@
         </view>
     <view class="btn">
           <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
-<<<<<<< HEAD
-          <image v-if="picstab" src=../../static/播放.png />
-          <image v-else src=../../static/暂停.png />
-=======
           <image v-if="picstab" src=../../static/暂停1.png  @click="playing"/>
           <image v-else src=../../static/播放1.png @click="parsing"/>
->>>>>>> c2fed071af4d979d8c27a79faa4103fec5e55a78
           <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
          </view>
   </view>
