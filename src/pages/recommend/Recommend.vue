@@ -1,8 +1,10 @@
   <template>
       <view class="top">
-        <view class="menu"></view>
+        <view class="tops">
+          <view class="menu"></view>
           <input type="text" placeholder="搜索喜欢的音乐" @click="navigateToSearchPage">
-        <view class="voice"></view>
+           <view class="voice"></view>
+        </view>
       </view>
       <view class="main">
         <view class="first">
@@ -14,7 +16,7 @@
               <view class="firstlist">
                 <view class="listItem" v-for="item in resource">
                   <image :src="item.creator.avatarUrl"></image>
-                  <p>{{ item.name}}</p>
+                  <view class="names">{{ item.name}}</view class="names">
                   <view class="play"><image src="../../static/bofang.png"></image></view>
                 </view>
               </view>
@@ -37,7 +39,9 @@
               </view>
             </scroll-view>
           </view>
-          <view class="RecommendSongs">
+          
+        </view>
+        <view class="RecommendSongs">
             <view class="h3">
               猜你喜欢
             </view>
@@ -58,7 +62,6 @@
               </view>
             </scroll-view>
           </view>
-        </view>
       </view>
   </template>
 
@@ -141,13 +144,25 @@
     color: white;
     display: flex;
     width: 100vw;
-    height: 45rpx;
+    height: 50rpx;
     // justify-content: center;
     align-items: center;
     justify-content: space-around;
-    // position: fixed; 
-    // top: 88rpx; 
+    position: fixed; 
+    // top: 50rpx; 
     // left: 0; 
+    top: 20rpx;
+    z-index: 1000;  
+    position: relative;
+    .tops{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100vw;
+      height: 50rpx;
+      position: absolute;
+      top: 0;
+    }
   }
   .menu{
     width: 50rpx;
@@ -184,9 +199,10 @@
   }
   .main{
     overflow: auto;
-    height: calc(100vh - 320rpx); // 减去头部的高度
+    // height: 100vh;
+    height: calc(100vh - 150rpx); // 减去头部的高度
     padding: 10rpx 30rpx;
-    margin-top: 100rpx;
+    margin-top: 40rpx;
     display: flex;
     flex-direction: column;
   }
@@ -210,24 +226,34 @@
         .listItem{
           width: 300rpx;
           height: 400rpx;
-          background: #ccc;
+          // background: #ccc;
           margin-top: 20rpx;
           margin-right: 40rpx;
           // white-space: nowrap;
           display: flex;
           flex-direction: column;
           text-align: center;
-          background: #959595;
+          background: #b19bb3;
           border-radius: 20rpx;
           color: white;
+          position: relative;
+          .names{
+            height: 90rpx;
+            line-height: 90rpx;
+            font-size: 20rpx;
+            // overflow: hidden;
+            text-overflow: ellipsis;
+            // white-space: nowrap;
+          }
           .play{
-            width: 30rpx;
-            height: 30rpx;
+            width: 40rpx;
+            height: 40rpx;
+            position: absolute;
+            right: 20rpx;
+            bottom: 120rpx;
             image{
-              width: 60rpx;
-              height: 60rpx;
-              bottom: 160rpx;
-              right: 110rpx;
+              width: 40rpx;
+              height: 40rpx;
             }
           }
           image{

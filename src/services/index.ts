@@ -58,8 +58,8 @@ export const toplistApi = () => {
   return request({ url: '/toplist/detail' })
 }
 // 歌单详情
-export const playlistDetailApi = (id) => {
-  return request({ url: '/playlist/detail', data: { id } })
+export const playlistDetailApi = () => {
+  return request({ url: '/playlist/detail?id=24381616' })
 }
 // 热搜列表
 export const searchHotApi = () => {
@@ -213,4 +213,8 @@ export const getNewSongApi = () => {
 
 export const getAagspi = () => {
   return request({ url: '/playlist/highquality/tags' })
+}
+
+export const gethHotApi = () => {
+  return request({ url: '/search/hot' })
 }
