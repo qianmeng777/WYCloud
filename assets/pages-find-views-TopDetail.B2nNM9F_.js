@@ -1,0 +1,1 @@
+import{h as e,w as r,i as s,a,f as t}from"./index-2NEu-Qph.js";import{_ as n}from"./plugin-vueexport-helper.BCo6x5W8.js";const o=n({},[["render",function(n,o){const u=s;return a(),e(u,null,{default:r((()=>[t("榜单详情页")])),_:1})}]]);export{o as default};
