@@ -14,7 +14,12 @@
 			"path": "pages/find/Find"
 		},
 		{
-			"path": "pages/roam/Roam"
+			"path": "pages/roam/Roam",
+			"style": {
+					"navigationBarBackgroundColor": "#D6A7E5", 
+					"navigationBarTitleText": "♥专属于你的音乐♥", 
+					"navigationBarTextStyle": "white" 
+				}
 		},
 		{
 			"path": "pages/dynamics/Dynamics"
@@ -69,6 +74,7 @@
 				"text": "动态",
 				"iconPath": "static/paobing-01.png",
 				"selectedIconPath": "static/paobing-01.png"
+				
 			},
 			{
 				"pagePath": "pages/Mine/Mine",
@@ -81,7 +87,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "网易云音乐",
-		"navigationBarBackgroundColor": "#FF0000",
+		"navigationBarBackgroundColor": "#FFB6C1",
 		"backgroundColor": "#F8F8F8"
 	},
 	"easycom": {

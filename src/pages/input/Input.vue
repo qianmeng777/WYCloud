@@ -83,13 +83,13 @@
                 </view>
             </swiper-item>
         </swiper>
-
     </view>
+
     <view class="footer">
-        <view class="img">
+        <view class="img" @click="goRoam">
             <image></image>图片
         </view>
-        <view class="songInfo">
+        <view class="songInfo" @click="goRoam">
            <view class="songName">Dehors(外面)</view>
            <view class="songer"> - JORDANN</view>
         </view>
@@ -130,7 +130,8 @@ const getHot = async () => {
 const getTopList = async () => {
     try {
       const res = await toplistApi();
-      topList.value = res.data.list
+      topList.value = res.data.list.slice(0, 10)
+
       console.log(topList.value);
     } catch (error) {
       console.error(error);
@@ -166,7 +167,11 @@ onMounted(async () => {
 });
 
 
-
+const goRoam = () => {
+      uni.switchTab({
+        url: '/pages/roam/Roam' 
+      });
+};
 
 </script>
 
@@ -253,9 +258,10 @@ onMounted(async () => {
   }
   .main{
     flex: 1;
-    background: pink;
+    background: rgb(255, 228, 233);
     padding: 30rpx;
     overflow: auto;
+    margin-bottom: 100rpx
   }
   .footer{
     height: 100rpx;
@@ -349,7 +355,7 @@ onMounted(async () => {
         width: 500rpx!important;
         border-radius: 16rpx;
         padding: 20rpx 30rpx;
-        border-right: 20rpx solid pink;
+        border-right: 20rpx solid rgb(255, 228, 233);
 
         .title{
            display: flex;
