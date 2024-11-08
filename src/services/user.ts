@@ -1,5 +1,5 @@
-import request from './request.js'
-
+// services/user.ts
+import request from './request'
 
 // 用户详情
 export const userDetailApi = (uid) => {
@@ -10,6 +10,7 @@ export const userDetailApi = (uid) => {
     }
   })
 }
+
 // 用户歌单
 export const userPlaylistApi = (uid) => {
   return request({
@@ -17,5 +18,13 @@ export const userPlaylistApi = (uid) => {
     data: {
       uid
     }
+  })
+}
+
+// 获取登录用户信息
+export const getLoginUserInfo = () => {
+  return request({
+    url: '/user/account',
+    method: 'GET'
   })
 }

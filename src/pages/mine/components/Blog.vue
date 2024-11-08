@@ -158,7 +158,6 @@
   onMounted(async () => {
     try {
       const res = await topPlaylistApi({ limit: 10})
-      console.log(res)
       Recommended.value = res.data.playlists
     } catch (error) {
       console.error(error)
