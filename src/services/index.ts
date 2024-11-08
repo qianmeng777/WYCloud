@@ -219,3 +219,9 @@ export const getTags = () => {
 export const getHotTopic = () => {
   return request({ url: '/starpick/comments/summary' })
 }
+
+
+// 播客列表
+export const getVoiceList = () => {
+  return request({ url: '/voicelist/search' })
+}
