@@ -81,7 +81,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "网易云音乐",
-		"navigationBarBackgroundColor": "#FF0000",
+		"navigationBarBackgroundColor": "#FFB6C1",
 		"backgroundColor": "#F8F8F8"
 	},
 	"easycom": {

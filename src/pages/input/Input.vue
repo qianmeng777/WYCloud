@@ -130,7 +130,8 @@ const getHot = async () => {
 const getTopList = async () => {
     try {
       const res = await toplistApi();
-      topList.value = res.data.list
+      topList.value = res.data.list.slice(0, 10)
+
       console.log(topList.value);
     } catch (error) {
       console.error(error);
@@ -253,9 +254,10 @@ onMounted(async () => {
   }
   .main{
     flex: 1;
-    background: pink;
+    background: rgb(255, 228, 233);
     padding: 30rpx;
     overflow: auto;
+    margin-bottom: 100rpx
   }
   .footer{
     height: 100rpx;
