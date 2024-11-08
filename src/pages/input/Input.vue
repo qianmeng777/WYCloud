@@ -351,7 +351,7 @@ onMounted(async () => {
         width: 500rpx!important;
         border-radius: 16rpx;
         padding: 20rpx 30rpx;
-        border-right: 20rpx solid pink;
+        border-right: 20rpx solid rgb(255, 228, 233);
 
         .title{
            display: flex;
