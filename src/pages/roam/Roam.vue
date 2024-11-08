@@ -13,9 +13,9 @@
         </view>
     <view class="btn">
           <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
-          <image v-if="picstab" src=../../static/播放.png />
-          <image v-else src=../../static/暂停.png />
-          <uni-icons type="right" size="50" @click="next"></uni-icons>
+          <image v-if="picstab" src=../../static/暂停1.png  @click="playing"/>
+          <image v-else src=../../static/播放1.png @click="parsing"/>
+          <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
          </view>
   </view>
 
@@ -42,15 +42,21 @@ innerAudioContext.src = '';
 innerAudioContext.onPlay(() => {
   console.log('开始播放');
 });
-
-
-const play = () => {
+const playing = () => {
+  picstab.value=!picstab.value
   innerAudioContext.src=''
+}
+const parsing = () => {
+  picstab.value=!picstab.value
+  fetchRecommendSongs(),
+  fetchSongUrl()
+  innerAudioContext.src=songurl.value
 }
 const next= () => {
   curindex.value++
   fetchRecommendSongs(),
   fetchSongUrl()
+  picstab.value = true
   innerAudioContext.src=songurl.value
   fetchplaylist()
 }
@@ -113,23 +119,22 @@ onMounted(
 <style lang="scss" scoped>
 .title{
   text-align: center;
-  margin-bottom: 10px;
 }
   
 
 .roam{
   box-sizing: border-box;
   width:100vw;
-  height:100vh;
+  height:calc(100vh - 94px);
   padding-top: 50px;
-  background: url(../../static/v2-6526bfc665b850c1abe4e0edd0366fd3_r.jpg);
+  background: url(../../static/603518648&fm=253&fmt=auto&app=138&f=JPEG.jpg);
   color: white;
   .big{
     box-sizing: border-box;
     width:600rpx;
     height:600rpx;
     padding: 100rpx;
-    margin: 100rpx auto;
+    margin: 50rpx auto;
     background: red;
     background: url(../../static/disc.png) no-repeat;
     background-size: 600rpx 600rpx;
@@ -153,11 +158,12 @@ onMounted(
  
 }
 .btn{
-  margin-top: 80px;
+  margin-top: 30px;
   box-sizing: border-box;
   padding: 0 50px;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   image{
     width: 60px;
