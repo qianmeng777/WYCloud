@@ -3,7 +3,7 @@
   <view class="bottom">
     <view class="like">
       <view class="like1">
-          <view class="like-pic"><image src="https://p1.music.126.net/9-rm4PUkKuL-lD1Rgg6SDw==/109951165434984508.jpg" alt="" /></view>
+          <view class="like-pic"><image src="../../../static/like.png" alt="" /></view>
           <view class="like-content">
             <view class="like-title">我喜欢的音乐</view>
             <view class="like-desc"><span>0首</span>~<span>0次播放</span></view>
@@ -14,9 +14,20 @@
     <!-- 新建歌单 -->
     <view class="like">
       <view class="like1">
-          <view class="like-pic"><image src="https://p1.music.126.net/9-rm4PUkKuL-lD1Rgg6SDw==/109951165434984508.jpg" alt="" /></view>
+          <view class="like-pic"><image src="../../../static/樱桃.png" alt="" /></view>
           <view class="like-content">
             <view class="like-title">新建歌单</view>
+          </view>
+      </view>
+    </view>
+
+
+        <!-- 导入外部歌单 -->
+    <view class="like">
+      <view class="like1">
+          <view class="like-pic"><image src="../../../static/西瓜.png" alt="" /></view>
+          <view class="like-content">
+            <view class="like-title">导入外部歌单</view>
           </view>
       </view>
     </view>
@@ -47,7 +58,7 @@
 
 .like-pic{
   width: 80rpx;
-  height: 80rpx;
+  height: 70rpx;
   background-color: #f4f4f4;
   image{
     width: 100%;

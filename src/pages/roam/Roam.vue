@@ -15,7 +15,7 @@
           <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
           <image v-if="picstab" src=../../static/播放.png />
           <image v-else src=../../static/暂停.png />
-          <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
+          <uni-icons type="right" size="50" @click="next"></uni-icons>
          </view>
   </view>
 
@@ -36,7 +36,7 @@
  const curid=ref(0)
  const songurl= ref('')
  
- const innerAudioContext = uni.createInnerAudioContext();
+const innerAudioContext = uni.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.src = '';
 innerAudioContext.onPlay(() => {
@@ -46,8 +46,6 @@ innerAudioContext.onPlay(() => {
 
 const play = () => {
   innerAudioContext.src=''
- 
-
 }
 const next= () => {
   curindex.value++
@@ -105,7 +103,6 @@ const fetchplaylist = async () => {
 };
 
 onMounted(
-  
   fetchRecommendSongs(),
   fetchSongUrl(),
  
