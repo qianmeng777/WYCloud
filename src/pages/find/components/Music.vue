@@ -11,6 +11,7 @@
   const playlistDetail = ref([])
 
   onMounted(async () => {
+  // 调banner接口
   try {
     const res = await bannerApi()
     // console.log(res)
@@ -45,13 +46,6 @@
   }
 
   // try {
-  //   const res = await playlistDetailApi(item.id)
-  //   console.log(res)
-  // } catch (error) { 
-  //   console.error(error)
-  // }
-
-  // try {
   //   const res = await getTags()
   //   console.log(res.data)
   //   TagsList.value = res.data.data
@@ -60,33 +54,22 @@
   // }
 })
 
+  // 跳转banner详情
   const goDetail = (item) => {
     uni.navigateTo ({
       url: '/pages/find/views/BannerDetail'
     })
   }
-  // const goTopDetail = (item) => {
-  //   console.log(item.id)
-  //   uni.navigateTo ({
-  //     url: `/pages/find/views/TopDetail?id=${item.id}`
-  //   })
-  // }
 
-  const goTopDetail = async (item) => {
-  console.log(item.id)
-  try {
-    const res = await playlistDetailApi(item.id)
-    console.log(res)
-    playlistDetail.value = res.data
-  } catch (error) {
-    console.error(error)
+  // 跳转榜单详情
+  const goTopDetail = async (id) => {
+    console.log(id)
+    uni.navigateTo ({
+      url: `/pages/find/views/TopDetail?id=${id}`
+    })
   }
-  uni.navigateTo ({
-    url: `/pages/find/views/TopDetail?id=${item.id}`
-  })
-}
 
-
+  // 数组转字符串
   const text = (arr) => {
     return arr.map(item => {
       return item.first
@@ -100,7 +83,7 @@
     <view class="con">
       <swiper class="swiper" autoplay interval="3000" duration="500">
         <swiper-item v-for="item in banners" :key="item.targetId">
-          <image class="img" :src="item.imageUrl" mode="widthFix" @click="goDetail(item.id)"/>
+          <image class="img" :src="item.imageUrl" mode="widthFix" @tap="goDetail(item.id)"/>
         </swiper-item>
       </swiper>
     </view>
@@ -157,7 +140,7 @@
         <scroll-view class="scroll" scroll-x>
           <view class="list">
             <view class="listItem" v-for="item in topList" :key="item.id">
-              <image :src="item.coverImgUrl" @click="goTopDetail(item)"></image>
+              <image :src="item.coverImgUrl" @tap="goTopDetail(item.id)"></image>
               <view class="th"> 
                 <view>{{ (String(text(item.tracks))).replace(/,/g, "、") }}</view>
                 <view class="play"><image src="../../../static/bofang.png"></image></view>

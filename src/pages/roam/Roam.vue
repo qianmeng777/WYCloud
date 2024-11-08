@@ -1,22 +1,22 @@
 <template>
   <view class="roam">
-     <view class="big">
-         <view class="img">
-          <image :src="resource[curindex]?.al.picUrl"/>
-         </view>
-     </view>
+    <view class="big">
+      <view class="img">
+      <image :src="resource[curindex]?.al.picUrl"/>
+      </view>
+    </view>
     <view class="list">
-         <view class="title">
-          <h3>{{ resource[curindex]?.al.name }}</h3>
-          <text>{{ resource[curindex]?.ar[0].name }}</text>
-         </view>
-        </view>
+      <view class="title">
+      <h3>{{ resource[curindex]?.al.name }}</h3>
+      <text>{{ resource[curindex]?.ar[0].name }}</text>
+      </view>
+    </view>
     <view class="btn">
-          <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
-          <image v-if="picstab" src=../../static/暂停1.png  @click="playing"/>
-          <image v-else src=../../static/播放1.png @click="parsing"/>
-          <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
-         </view>
+      <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
+      <image v-if="picstab" src=../../static/暂停1.png  @click="playing"/>
+      <image v-else src=../../static/播放1.png @click="parsing"/>
+      <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
+    </view>
   </view>
 
   
@@ -25,10 +25,9 @@
 </template>
 
 <script setup>
- import { ref,onMounted,onUnmounted } from 'vue'
+ import { ref,onMounted } from 'vue'
  import { recommendSongsApi,getSongsApi,getplaylistApi} from '../../services/index'
 
- const open=ref("true")
  const picstab=ref("false")
 
  const resource = ref([])
