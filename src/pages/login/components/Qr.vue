@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { qrKeyApi, qrCreateApi, qrCheckApi } from '../../../services/index'
-import { ref, onBeforeUnmount } from 'vue'
+import { ref, onBeforeUnmount, onMounted } from 'vue'
 import { useUserStore } from '../../../stores/user'
 
 const userStore = useUserStore()
@@ -11,10 +11,17 @@ const qrStatus = ref('')
 const qrCode = ref(null)
 let timer = null
 
+
+onMounted(() => {
+  uni.removeStorageSync('curCookie')
+})
+
+
+
 const qrCheck = () => {
   timer = setInterval(async () => {
     const res = await qrCheckApi(unikey.value)
-    console.log(res)
+    console.log("New unikey:", res.data.unikey); // 检查 unikey 是否变化
     qrCode.value = res.data.code
     if (res.data.code === 800) {
       // 二维码过期，重新获取二维码

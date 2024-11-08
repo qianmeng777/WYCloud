@@ -1,8 +1,9 @@
 <template>
   <!-- 头部区域 -->
-  <view class="header">
-    <view class="avatar"></view>
-    <navigator url="/pages/login/login" class="login">立即登录 ></navigator>
+  <view class="header" :style="{ backgroundImage: `url(${userStore.profile.backgroundUrl})` }">
+    <image v-if="userStore.profile && userStore.profile.avatarUrl" :src="userStore.profile.avatarUrl" class="avatar" />
+    <navigator v-if="!userStore.profile" url="/pages/login/login" class="login">立即登录 ></navigator>
+    <view v-else class="username">{{ userStore.profile.nickname || '用户名' }}</view> <!-- 显示用户名 -->
     <view class="desc">
     <view class="center">
       <view class="p">关注</view>
@@ -35,26 +36,35 @@
 </template>
 
 <script setup>
-
-  import { ref } from 'vue'
+ import { ref, onMounted } from 'vue'
   import Like from './components/Like.vue'
   import Blog from './components/Blog.vue'
   import DynamicState from './components/DynamicState.vue'
-  const curIndex = ref(0)
+  import { useUserStore } from '../../stores/user' // 引入 Pinia store
 
+  const curIndex = ref(0)
   const tabs = ['音乐', '博客', '动态']
-  
+
+
+  // 获取 Pinia store
+  const userStore = useUserStore()
+
+
+  onMounted(async () => {
+  await userStore.getAccount();  // 获取用户信息
+});
+
+
 </script>
 
 <style lang="scss" scoped>
 
 .header{
-    height: 400rpx;
+    height: 600rpx;
     overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url('./pic/15419466901131584.png');
 }
 
 .avatar{
@@ -74,7 +84,7 @@
 .desc{
   height: 50rpx;
   width: 100%;
-  margin-top: 100rpx;
+  margin-top: 200rpx;
 }
 
 .center{
@@ -140,6 +150,19 @@
   font-size: 28rpx;
   font-weight: 900;
   color: white;
+}
+
+.username{
+  position: relative;
+  top: 15%;
+  left: 35%;
+  width: 100%;
+  height: 50rpx;
+  font-size: 35rpx;
+  font-weight: 900;
+  background: linear-gradient(to right, red, violet, yellow, green, blue, indigo);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 
