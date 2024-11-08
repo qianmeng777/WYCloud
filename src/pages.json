@@ -20,7 +20,10 @@
 			"path": "pages/dynamics/Dynamics"
 		},
 		{
-			"path": "pages/Mine/Mine"
+			"path": "pages/Mine/Mine" ,
+			"style": {
+				"navigationStyle": "custom"
+			}
 		},
 		{
 			"path": "pages/input/Input"
