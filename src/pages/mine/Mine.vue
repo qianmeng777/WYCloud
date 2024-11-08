@@ -28,7 +28,7 @@
 
 <!-- 定位区 -->
 <view class="cbl"></view>
-<view class="ser"></view>
+<navigator url="/pages/input/Input" class="ser"></navigator>
 <view class="more"></view>
 
 
