@@ -25,6 +25,13 @@
   <DynamicState v-if="curIndex===2" />
 </view>
 
+
+<!-- 定位区 -->
+<view class="cbl"></view>
+<navigator url="/pages/input/Input" class="ser"></navigator>
+<view class="more"></view>
+
+
 </template>
 
 <script setup>
@@ -57,7 +64,11 @@
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
-  background-color: #f4f4f4;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../../static/草莓.png');
 }
 
 .desc{
@@ -132,6 +143,50 @@
 }
 
 
+.cbl{
+  position: fixed;
+  top: 0;
+  margin-top: 40rpx;
+  left: 0;
+  margin-left: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../../static/卡通牛.png');
+}
 
+.ser{
+  position: fixed;
+  top: 0;
+  margin-top: 40rpx;
+  right: 0;
+  margin-right: 90rpx;
+  width: 45rpx;
+  height: 45rpx;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../../static/搜索-copy.png');
+}
+
+
+.more{
+  position: fixed;
+  top: 0;
+  margin-top: 40rpx;
+  right: 0;
+  margin-right: 20rpx;
+  width: 45rpx;
+  height: 45rpx;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../../static/更多.png');
+}
 
 </style>
