@@ -22,6 +22,20 @@ export const getSongsApi = (id:number) => {
     }
   })
 }
+//// 歌单评论  /comment/playlist
+export const getplaylistApi = (id:number) => {
+  return request({
+    url: '/comment/playlist',
+    data:{
+      id
+    }
+  })
+}
+//发现
+export const getballApi = () => {
+  return request({ url: '//homepage/dragon/ball' })
+}
+
 // 首页
 export const homepageApi = () => {
   return request({ url: '/homepage/block/page' })

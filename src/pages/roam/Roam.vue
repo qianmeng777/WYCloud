@@ -12,11 +12,10 @@
          </view>
         </view>
     <view class="btn">
-          <uni-icons type="left" size="50" @click="prev"></uni-icons>
+          <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
           <image v-if="picstab" src=../../static/播放.png />
           <image v-else src=../../static/暂停.png />
-          <uni-icons type="right" size="50" @click="next"></uni-icons>
-          
+          <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
          </view>
   </view>
 
@@ -27,7 +26,7 @@
 
 <script setup>
  import { ref,onMounted,onUnmounted } from 'vue'
- import { recommendSongsApi,getSongsApi} from '../../services/index'
+ import { recommendSongsApi,getSongsApi,getplaylistApi} from '../../services/index'
 
  const open=ref("true")
  const picstab=ref("false")
@@ -55,14 +54,14 @@ const next= () => {
   fetchRecommendSongs(),
   fetchSongUrl()
   innerAudioContext.src=songurl.value
-  
+  fetchplaylist()
 }
 const prev= () => {
   curindex.value--
   fetchRecommendSongs(),
   fetchSongUrl()
   innerAudioContext.src=songurl.value
-
+  fetchplaylist()
 }
 
 
@@ -91,10 +90,25 @@ const fetchSongUrl = async () => {
     console.error(error);
   }
 };
+//歌曲评论
+const fetchplaylist = async () => {
+  try {
+    if (curid.value) {
+      const res = await getplaylistApi(1890530891);
+      console.log(res.data);
+      // songurl.value = res.data.data[0].url;
+      // console.log(songurl.value);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 onMounted(
   
   fetchRecommendSongs(),
-  fetchSongUrl()
+  fetchSongUrl(),
+ 
 )
 
 </script>
@@ -110,8 +124,9 @@ onMounted(
   box-sizing: border-box;
   width:100vw;
   height:100vh;
- padding-top: 50px;
-  background: rgb(104,77,56);
+  padding-top: 50px;
+  background: url(../../static/v2-6526bfc665b850c1abe4e0edd0366fd3_r.jpg);
+  color: white;
   .big{
     box-sizing: border-box;
     width:600rpx;
@@ -141,14 +156,15 @@ onMounted(
  
 }
 .btn{
+  margin-top: 80px;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 50px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   image{
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
   text{
     font-size: 100rpx;
