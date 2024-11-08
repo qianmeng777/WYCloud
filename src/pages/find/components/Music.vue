@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { bannerApi, topPlaylistApi, getNewSongApi, getAagspi, toplistApi } from '../../../services/index'
+  import { bannerApi, topPlaylistApi, getNewSongApi, getTags, toplistApi, getHotTopic } from '../../../services/index'
   const banners = ref([])
   const selectPlaylist = ref([])
   const newPlaylist = ref([])
@@ -28,16 +28,8 @@
 
   try {
     const res = await getNewSongApi()
-    console.log(res.data.data)
+    // console.log(res.data.data)
     newSonglist.value = res.data.data.slice(0,12)
-  } catch (error) {
-    console.error(error)
-  }
-
-  try {
-    const res = await getAagspi()
-    console.log(res.data)
-    newBalllist.value = res.data.data
   } catch (error) {
     console.error(error)
   }
@@ -49,6 +41,14 @@
   } catch (error) {
     console.error(error)
   }
+
+  // try {
+  //   const res = await getTags()
+  //   console.log(res.data)
+  //   newBalllist.value = res.data.data
+  // } catch (error) {
+  //   console.error(error)
+  // }
 })
 
   const goDetail = (item) => {
@@ -61,8 +61,8 @@
       url: '/pages/find/views/TopDetail'
     })
   }
-  const text = (num) => {
-    return num.map(item => {
+  const text = (arr) => {
+    return arr.map(item => {
       return item.first
     })
   }
@@ -84,7 +84,7 @@
       <view class="selectCon">
         <scroll-view class="scroll" scroll-x>
           <view class="list">
-            <view class="listItem" v-for="item in selectPlaylist">
+            <view class="listItem" v-for="item in selectPlaylist" :key="item">
               <image :src="item.coverImgUrl"></image>
               <view>{{ item.name}}</view>
               <view class="play"><image src="../../../static/bofang.png"></image></view>
@@ -99,7 +99,7 @@
       <view class="newCon">
         <scroll-view class="scroll" scroll-x>
           <view class="list">
-            <view class="listItem" v-for="item in newPlaylist">
+            <view class="listItem" v-for="item in newPlaylist" :key="item">
               <image :src="item.coverImgUrl"></image>
               <view>{{ item.name}}</view>
               <view class="play"><image src="../../../static/bofang.png"></image></view>
@@ -113,7 +113,7 @@
     <view class="newSong">
       <scroll-view class="newSongCon" scroll-x>
         <view class="newSongList">
-          <view class="newSongItem" v-for="item in newSonglist">
+          <view class="newSongItem" v-for="item in newSonglist" :key="item">
             <image :src="item.album.picUrl"></image>
             <view class="right">
               <view class="song">{{ item.album.name }}</view>
@@ -125,12 +125,12 @@
       </scroll-view>
     </view>
 
-    <view class="tit">排行榜&gt;</view>
+    <view class="tit phb">排行榜&gt;</view>
     <view class="top">
       <view class="topCon">
         <scroll-view class="scroll" scroll-x>
           <view class="list">
-            <view class="listItem" v-for="item in topList">
+            <view class="listItem" v-for="item in topList" :key="item">
               <image :src="item.coverImgUrl" @click="goTopDetail(id)"></image>
               <view class="th">
                 <view>{{ (String(text(item.tracks))).replace(/,/g, "、") }}</view>
@@ -144,6 +144,16 @@
         </scroll-view>
       </view>
     </view>
+
+    <view class="tit">探索更多</view>
+    <view class="styleList">
+      <view class="style">按曲风浏览&gt;</view>
+      <view class="style">按歌手浏览&gt;</view>
+      <view class="style">音乐专区&gt;</view>
+      <view class="style">歌单广场&gt;</view>
+      <view class="style">宝藏曲库&gt;</view>
+    </view>
+
   </view>
   
 </template>
@@ -170,7 +180,10 @@
   .tit{
     font-size: 14px;
     font-weight: 900;
-    margin-top: 15px;
+    margin: 25px 0 5px 0;
+  }
+  .phb{
+    margin: 35px 0 5px 0;
   }
 
   .select , .new , .newSong , .top{
@@ -239,7 +252,6 @@
   .newSongList{
     display: flex;
     width: 2600rpx;
-    height: 340rpx;
     flex-wrap: wrap;
   }
   .newSongItem{
@@ -280,5 +292,12 @@
         height: 20px;
       }
     }
+  }
+  
+  .style{
+    font-size: 12px;
+    font-family: "楷体";
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
   }
 </style>
