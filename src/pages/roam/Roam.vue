@@ -13,7 +13,8 @@
         </view>
     <view class="btn">
           <uni-icons type="left" size="50" @click="prev"></uni-icons>
-          <button @click="play">播放</button>
+          <image v-if="picstab" src=../../static/播放.png />
+          <image v-else src=../../static/暂停.png />
           <uni-icons type="right" size="50" @click="next"></uni-icons>
          </view>
   </view>
@@ -28,9 +29,10 @@
  import { recommendSongsApi,getSongsApi} from '../../services/index'
 
  const open=ref("true")
+ const picstab=ref("false")
 
  const resource = ref([])
- let curindex = ref(3)
+ let curindex = ref(1)
  const curid=ref(0)
  const songurl= ref('')
  
@@ -140,10 +142,25 @@ onMounted(
   width: 100%;
   display: flex;
   justify-content: space-between;
+  image{
+    width: 50px;
+    height: 50px;
+  }
   text{
     font-size: 100rpx;
   }
 
 }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
+.big .img image {
+  animation: spin 10s linear infinite; /* 10秒内完成一次旋转，线性速度，无限循环 */
+}
 </style>

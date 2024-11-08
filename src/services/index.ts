@@ -210,7 +210,18 @@ export const getNewSongApi = () => {
   return request({ url: '/top/song?type=0' })
 }
 
-
-export const getAagspi = () => {
+// 发现页分类导航
+export const getTags = () => {
   return request({ url: '/playlist/highquality/tags' })
+}
+
+// 星评馆-简要评论
+export const getHotTopic = () => {
+  return request({ url: '/starpick/comments/summary' })
+}
+
+
+// 播客列表
+export const getVoiceList = () => {
+  return request({ url: '/voicelist/search' })
 }

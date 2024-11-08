@@ -29,6 +29,12 @@
 			"path": "pages/input/Input"
 		},
 		{
+			"path": "pages/find/views/BannerDetail"
+		},
+		{
+			"path": "pages/find/views/TopDetail"
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationStyle": "custom"

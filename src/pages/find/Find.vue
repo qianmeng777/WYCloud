@@ -36,7 +36,7 @@ import ListeningBooks from './components/ListeningBooks.vue'
 
 const curIndex = ref(0)
 
-const tabs = ['音乐', '博客', '听书', '直播']
+const tabs = ['音乐', '播客', '听书', '直播']
 
 </script>
 
