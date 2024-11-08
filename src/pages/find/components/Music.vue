@@ -1,13 +1,14 @@
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { bannerApi, topPlaylistApi, getNewSongApi, getTags, toplistApi, getHotTopic } from '../../../services/index'
-  
+  import { bannerApi, topPlaylistApi, getNewSongApi, getTags, toplistApi, playlistDetailApi } from '../../../services/index'
+
   const banners = ref([])
   const selectPlaylist = ref([])
   const newPlaylist = ref([])
   const newSonglist = ref([])
   // const tagsList = ref([])
   const topList = ref([])
+  const playlistDetail = ref([])
 
   onMounted(async () => {
   try {
@@ -44,6 +45,13 @@
   }
 
   // try {
+  //   const res = await playlistDetailApi(item.id)
+  //   console.log(res)
+  // } catch (error) { 
+  //   console.error(error)
+  // }
+
+  // try {
   //   const res = await getTags()
   //   console.log(res.data)
   //   TagsList.value = res.data.data
@@ -57,11 +65,28 @@
       url: '/pages/find/views/BannerDetail'
     })
   }
-  const goTopDetail = (id) => {
-    uni.navigateTo ({
-      url: '/pages/find/views/TopDetail'
-    })
+  // const goTopDetail = (item) => {
+  //   console.log(item.id)
+  //   uni.navigateTo ({
+  //     url: `/pages/find/views/TopDetail?id=${item.id}`
+  //   })
+  // }
+
+  const goTopDetail = async (item) => {
+  console.log(item.id)
+  try {
+    const res = await playlistDetailApi(item.id)
+    console.log(res)
+    playlistDetail.value = res.data
+  } catch (error) {
+    console.error(error)
   }
+  uni.navigateTo ({
+    url: `/pages/find/views/TopDetail?id=${item.id}`
+  })
+}
+
+
   const text = (arr) => {
     return arr.map(item => {
       return item.first
@@ -75,7 +100,7 @@
     <view class="con">
       <swiper class="swiper" autoplay interval="3000" duration="500">
         <swiper-item v-for="item in banners" :key="item.targetId">
-          <image class="img" :src="item.imageUrl" mode="widthFix" @click="goDetail(item)"/>
+          <image class="img" :src="item.imageUrl" mode="widthFix" @click="goDetail(item.id)"/>
         </swiper-item>
       </swiper>
     </view>
@@ -131,9 +156,9 @@
       <view class="topCon">
         <scroll-view class="scroll" scroll-x>
           <view class="list">
-            <view class="listItem" v-for="item in topList" :key="item">
-              <image :src="item.coverImgUrl" @click="goTopDetail(id)"></image>
-              <view class="th">
+            <view class="listItem" v-for="item in topList" :key="item.id">
+              <image :src="item.coverImgUrl" @click="goTopDetail(item)"></image>
+              <view class="th"> 
                 <view>{{ (String(text(item.tracks))).replace(/,/g, "、") }}</view>
                 <view class="play"><image src="../../../static/bofang.png"></image></view>
                 <!-- <view v-for="(item , i) in item.tracks" class="three">
