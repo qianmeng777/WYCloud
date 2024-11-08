@@ -83,13 +83,13 @@
                 </view>
             </swiper-item>
         </swiper>
-
     </view>
+
     <view class="footer">
-        <view class="img">
+        <view class="img" @click="goRoam">
             <image></image>图片
         </view>
-        <view class="songInfo">
+        <view class="songInfo" @click="goRoam">
            <view class="songName">Dehors(外面)</view>
            <view class="songer"> - JORDANN</view>
         </view>
@@ -167,7 +167,11 @@ onMounted(async () => {
 });
 
 
-
+const goRoam = () => {
+      uni.switchTab({
+        url: '/pages/roam/Roam' 
+      });
+};
 
 </script>
 

@@ -1,4 +1,4 @@
-  <template>
+  <template>  
       <view class="top">
         <view class="tops">
           <view class="menu"></view>
@@ -63,6 +63,19 @@
             </scroll-view>
           </view>
       </view>
+      <view class="footer">
+        <view class="img" @click="goRoam">
+            <image></image>图片
+        </view>
+        <view class="songInfo" @click="goRoam">
+           <view class="songName">Dehors(外面)</view>
+           <view class="songer"> - JORDANN</view>
+        </view>
+        <view class="image">
+            <image src="../../static/播放.png"></image>
+        </view>
+        <view><uni-icons type="bars" size="30"></uni-icons></view>
+    </view>
   </template>
 
   <script setup lang="ts">
@@ -129,6 +142,12 @@
     return (playCount / 10000).toFixed(1) + '万';
   };
 
+
+  const goRoam = () => {
+      uni.switchTab({
+        url: '/pages/roam/Roam' 
+      });
+  };
   </script>
 
 
@@ -200,7 +219,7 @@
   .main{
     overflow: auto;
     // height: 100vh;
-    height: calc(100vh - 150rpx); // 减去头部的高度
+    height: calc(100vh - 400rpx); // 减去头部的高度
     padding: 10rpx 30rpx;
     margin-top: 40rpx;
     display: flex;
@@ -404,6 +423,44 @@
           }
         }
       }
+    }
+  }
+
+  .footer{
+    height: 100rpx;
+    // background: red;
+    position: fixed;
+    bottom: 95rpx;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1rpx solid #ccc;
+    background: white;
+    .img{
+        width: 70rpx;
+        height: 70rpx;
+        background: #ffffff;
+        border-radius: 50%;
+        margin-left: 20rpx;
+        border: 10rpx solid #000000;
+
+    }
+    .songInfo{
+        display: flex;
+        .songer{
+            // font-size: 25rpx;
+            color: #b7b7b7;
+            margin: 2rpx 0 0 10rpx;
+        }
+    }
+    .image{
+        image{
+            width: 60rpx;
+            height: 60rpx;
+            margin-top: 5rpx;
+        }
     }
   }
   </style>

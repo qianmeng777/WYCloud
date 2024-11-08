@@ -166,9 +166,10 @@ export const loginApi = ({ email, password }) => {
   })
 }
 // 登录状态
+// index.ts
 export const loginStatusApi = () => {
   return request({
-    url: '/login/status',
+    url: `/login/status?timestamp=${Date.now()}`,
   })
 }
 // 歌曲详情

@@ -26,9 +26,7 @@ const curindex = ref(0)
   color: red;
 }
 .main{
-  width: 100vw;
-  height: 100vh;
-  
+  overflow: auto;
   display: flex;
   flex-direction: column;
   .title{

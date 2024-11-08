@@ -1,13 +1,13 @@
 <template>
   <view class="blog">
     <!-- 添加博客 -->
-    <view class="like">
-      <view class="like1">
-        <view class="like-pic">
+    <view class="like2">
+      <view class="like3">
+        <view class="like-pic2">
           <image src="../../../static/百事可乐汽水.png" alt="" />
         </view>
-        <view class="like-content">
-          <view class="like-title">添加博客和有声书</view>
+        <view class="like-content2">
+          <view class="like-title2">添加博客和有声书</view>
         </view>
       </view>
     </view>
@@ -147,6 +147,56 @@
     line-height: 90rpx;
     border-bottom: 2rpx solid #f5f5f5;
   }
+
+
+
+
+
+  .like2{
+  height: 120rpx;
+  width: 100%;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+.like3{
+  height: 80rpx;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.like-pic2{
+  width: 80rpx;
+  height: 70rpx;
+  background-color: #f4f4f4;
+  image{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.like-title2{
+  flex: 1;
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  padding-top: 5rpx;
+  color: #000;
+}
+
+.like-content2 {
+    flex: 1;
+    margin-left: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100rpx;
+  }
+
+
+
   </style>
   
   <script setup>
@@ -158,7 +208,6 @@
   onMounted(async () => {
     try {
       const res = await topPlaylistApi({ limit: 10})
-      console.log(res)
       Recommended.value = res.data.playlists
     } catch (error) {
       console.error(error)
