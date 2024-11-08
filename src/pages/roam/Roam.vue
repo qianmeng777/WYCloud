@@ -30,42 +30,142 @@
 
  const picstab=ref("false")
 
- const resource = ref([])
- let curindex = ref(1)
- const curid=ref(0)
- const songurl= ref('')
+//  const resource = ref([])
+//  let curindex = ref(1)
+//  const curid=ref(0)
+//  const songurl= ref('')
  
+// const innerAudioContext = uni.createInnerAudioContext();
+// innerAudioContext.autoplay = true;
+// innerAudioContext.src = '';
+// innerAudioContext.onPlay(() => {
+//   console.log('开始播放');
+// });
+// const playing = () => {
+//   picstab.value=!picstab.value
+//   innerAudioContext.src=''
+// }
+// const parsing = () => {
+//   picstab.value=!picstab.value
+//   fetchRecommendSongs(),
+//   fetchSongUrl()
+//   innerAudioContext.src=songurl.value
+// }
+// const next= () => {
+//   curindex.value++
+//   fetchRecommendSongs(),
+//   fetchSongUrl()
+//   picstab.value = true
+//   innerAudioContext.src=songurl.value
+//   fetchplaylist()
+// }
+// const prev= () => {
+//   curindex.value--
+//   fetchRecommendSongs(),
+//   fetchSongUrl()
+//   innerAudioContext.src=songurl.value
+//   fetchplaylist()
+// }
+
+
+// const fetchRecommendSongs = async () => {
+//   try {
+//     const res = await recommendSongsApi();
+//     console.log(res.data.data.dailySongs);
+//     resource.value = res.data.data.dailySongs;
+//     if (resource.value.length > 0) {
+//       curid.value = resource.value[curindex.value].id;
+//       console.log(curid.value);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+// const fetchSongUrl = async () => {
+//   try {
+//     if (curid.value) {
+//       const res = await getSongsApi(curid.value);
+//       console.log(res.data.data[0].url);
+//       songurl.value = res.data.data[0].url;
+//       console.log(songurl.value);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+// //歌曲评论
+// const fetchplaylist = async () => {
+//   try {
+//     if (curid.value) {
+//       const res = await getplaylistApi(1890530891);
+//       console.log(res.data);
+//       // songurl.value = res.data.data[0].url;
+//       // console.log(songurl.value);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// onMounted(
+//   fetchRecommendSongs(),
+//   fetchSongUrl(),
+  
+
+// )
+
+import { ref, onMounted, onUnmounted } from 'vue';
+import { recommendSongsApi, getSongsApi, getplaylistApi } from '../../services/index';
+import { useAudioStore } from '../../stores/music'; // 导入Pinia store
+
+const open = ref("true");
+const picstab = ref("false");
+const resource = ref([]);
+let curindex = ref(1);
+const curid = ref(0);
+const songurl = ref('');
+
+const audioStore = useAudioStore(); // 使用Pinia store
+
 const innerAudioContext = uni.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.src = '';
 innerAudioContext.onPlay(() => {
   console.log('开始播放');
+  audioStore.updatePlayingStatus(true); // 更新Pinia store中的播放状态
 });
+innerAudioContext.onPause(() => {
+  console.log('暂停播放');
+  audioStore.updatePlayingStatus(false); // 更新Pinia store中的播放状态
+});
+
+// 修改部分：在播放和暂停函数中添加更新Pinia store的操作
 const playing = () => {
-  picstab.value=!picstab.value
-  innerAudioContext.src=''
-}
+  picstab.value = !picstab.value;
+  innerAudioContext.src = '';
+  audioStore.updateSongInfo(resource.value[curindex.value]?.al.name, resource.value[curindex.value]?.ar[0].name, resource.value[curindex.value]?.al.picUrl); // 更新Pinia store中的歌曲信息
+};
 const parsing = () => {
-  picstab.value=!picstab.value
-  fetchRecommendSongs(),
-  fetchSongUrl()
-  innerAudioContext.src=songurl.value
-}
-const next= () => {
-  curindex.value++
-  fetchRecommendSongs(),
-  fetchSongUrl()
-  picstab.value = true
-  innerAudioContext.src=songurl.value
-  fetchplaylist()
-}
-const prev= () => {
-  curindex.value--
-  fetchRecommendSongs(),
-  fetchSongUrl()
-  innerAudioContext.src=songurl.value
-  fetchplaylist()
-}
+  picstab.value = !picstab.value;
+  fetchRecommendSongs(), fetchSongUrl();
+  innerAudioContext.src = songurl.value;
+  audioStore.updateSongInfo(resource.value[curindex.value]?.al.name, resource.value[curindex.value]?.ar[0].name, resource.value[curindex.value]?.al.picUrl); // 更新Pinia store中的歌曲信息
+};
+const next = () => {
+  curindex.value++;
+  fetchRecommendSongs(), fetchSongUrl();
+  picstab.value = true;
+  innerAudioContext.src = songurl.value;
+  audioStore.updateSongInfo(resource.value[curindex.value]?.al.name, resource.value[curindex.value]?.ar[0].name, resource.value[curindex.value]?.al.picUrl); // 更新Pinia store中的歌曲信息
+  fetchplaylist();
+};
+const prev = () => {
+  curindex.value--;
+  fetchRecommendSongs(), fetchSongUrl();
+  innerAudioContext.src = songurl.value;
+  audioStore.updateSongInfo(resource.value[curindex.value]?.al.name, resource.value[curindex.value]?.ar[0].name, resource.value[curindex.value]?.al.picUrl); // 更新Pinia store中的歌曲信息
+  fetchplaylist();
+};
 
 
 const fetchRecommendSongs = async () => {
@@ -110,7 +210,8 @@ const fetchplaylist = async () => {
 onMounted(
   fetchRecommendSongs(),
   fetchSongUrl(),
- 
+  
+
 )
 
 </script>
@@ -183,6 +284,6 @@ onMounted(
 }
 
 .big .img image {
-  animation: spin 10s linear infinite; /* 10秒内完成一次旋转，线性速度，无限循环 */
+  animation: spin 0.00001s linear infinite; /* 10秒内完成一次旋转，线性速度，无限循环 */
 }
 </style>

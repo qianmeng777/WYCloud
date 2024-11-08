@@ -3,10 +3,11 @@ import request from './request'
 
 // 用户详情
 export const userDetailApi = (uid) => {
+
   return request({
     url: '/user/detail',
     data: {
-      uid
+      uid,
     }
   })
 }
@@ -22,9 +23,10 @@ export const userPlaylistApi = (uid) => {
 }
 
 // 获取登录用户信息
-export const getLoginUserInfo = () => {
+export const getLoginUserInfo = (cookie: string) => {
   return request({
     url: '/user/account',
-    method: 'GET'
+    method: 'POST',
+    data: { cookie }
   })
 }

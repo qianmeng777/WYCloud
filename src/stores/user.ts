@@ -1,62 +1,39 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { loginStatusApi } from '../services/index'
-import { userDetailApi, userPlaylistApi } from '../services/user'
+import { getLoginUserInfo, userDetailApi, userPlaylistApi } from '../services/user' // 引入接口
 
-export const useUserStore = defineStore('user', () => {
-  const profile = ref(null)
-  const account = ref(null)
-  const userPlaylists = ref([])
+export const useUserStore = defineStore('user',() => {
+  const profile = ref({})
+  const account = ref({})
+  const cookie = uni.getStorageSync('curCookie')
+
 
   const getUserDetail = async () => {
-    try {
-      const res = await userDetailApi(account.value.id)
-      profile.value = {
-        ...res.profile,
-        level: res.level,
-        listenSongs: res.listenSongs,
-        createDays: res.createDays,
-      }
-    } catch (error) {
-      console.error('Failed to fetch user details:', error)
+    const res = await userDetailApi(account.value.id)
+    // console.log(res.data.profile)
+    profile.value = {
+      ...res.data.profile,
+      level: res.data.level,
+      listenSongs: res.data.listenSongs,
+      createDays: res.data.createDays,
     }
+    console.log(profile.value)
   }
-
-  const getUserPlaylists = async () => {
-    try {
-      const res = await userPlaylistApi(account.value.id)
-      userPlaylists.value = res.playlist
-    } catch (error) {
-      console.error('Failed to fetch user playlists:', error)
-    }
-  }
-
+  
+  // 登录状态
   const getAccount = async () => {
-    try {
-      const res = await loginStatusApi()
-      account.value = res.data.account
-      if (res.data.account) {
-        await getUserDetail()
-        await getUserPlaylists()
-      }
-    } catch (error) {
-      console.error('Failed to fetch account status:', error)
+    const res = await getLoginUserInfo(cookie)
+    // console.log(res.data)
+    account.value = res.data.account
+    if( res.data.account ) {
+      getUserDetail()
     }
   }
-
-  const logout = () => {
-    profile.value = null
-    account.value = null
-    userPlaylists.value = []
-  }
-
+  
   return {
-    profile,
     account,
-    userPlaylists,
     getAccount,
-    getUserDetail,
-    getUserPlaylists,
-    logout
+    profile,
+    getUserDetail
   }
 })
