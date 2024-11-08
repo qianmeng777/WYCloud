@@ -15,7 +15,7 @@
           <uni-icons type="left" size="50" @click="prev" color="white"></uni-icons>
           <image v-if="picstab" src=../../static/播放.png />
           <image v-else src=../../static/暂停.png />
-          <uni-icons type="right" size="50" @click="next"></uni-icons>
+          <uni-icons type="right" size="50" @click="next" color="white"></uni-icons>
          </view>
   </view>
 
