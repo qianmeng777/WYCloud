@@ -1,9 +1,12 @@
 <template>
   <!-- 头部区域 -->
-  <view class="header" :style="{ backgroundImage: userStore.profile && userStore.profile.backgroundUrl ? `url(${userStore.profile.backgroundUrl})` :'url(../../static/15419466901131584.png)'}">
+  <view class="header" :style="{ backgroundImage: userStore.profile && userStore.profile.backgroundUrl ? `url(${userStore.profile.backgroundUrl})` :'url(/WYCloud/static/15419466901131584.png)'}">
     <image :src="userStore.profile && userStore.profile.avatarUrl ? userStore.profile.avatarUrl : '../../static/草莓.png'" class="avatar" />
-    <navigator url="/pages/login/login" class="login">立即登录 ></navigator>
-    <view  class="username">{{ userStore.profile ? userStore.profile.nickname || '用户名' : '用户名' }}</view> <!-- 显示用户名 -->
+    <!-- 如果有昵称，显示昵称，否则显示‘立即登录’按钮 -->
+    <view v-if="userStore.profile && userStore.profile.nickname" class="username">
+      {{ userStore.profile.nickname }}
+    </view>
+    <navigator v-else url="/pages/login/login" class="login">立即登录 ></navigator>
     <view class="desc">
     <view class="center">
       <view class="p">关注</view>
@@ -153,7 +156,8 @@
 .username{
   width: 100%;
   height: 50rpx;
-  margin: 120rpx 0 0 280rpx;
+  text-align: center;
+  margin-top: 150rpx;
   font-size: 35rpx;
   font-weight: 900;
   background: linear-gradient(to right, red, violet, yellow, green, blue, indigo);
