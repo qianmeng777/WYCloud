@@ -7,17 +7,28 @@ export const useUserStore = defineStore('user',() => {
   const account = ref({})
   const cookie = uni.getStorageSync('curCookie')
 
-
+  // 用户详情
   const getUserDetail = async () => {
     const res = await userDetailApi(account.value.id)
-    // console.log(res.data.profile)
+    console.log(res.data.profile)
     profile.value = {
       ...res.data.profile,
       level: res.data.level,
       listenSongs: res.data.listenSongs,
       createDays: res.data.createDays,
     }
-    console.log(profile.value)
+  }
+
+  // 用户歌单
+  const userPlaylist = async () => {
+    const res = await userPlaylistApi(account.value.id)
+    console.log(res)
+    profile.value = {
+      ...res.data.profile,
+      level: res.data.level,
+      listenSongs: res.data.listenSongs,
+      createDays: res.data.createDays,
+    }
   }
   
   // 登录状态
@@ -27,6 +38,7 @@ export const useUserStore = defineStore('user',() => {
     account.value = res.data.account
     if( res.data.account ) {
       getUserDetail()
+      userPlaylist()
     }
   }
   
@@ -34,6 +46,7 @@ export const useUserStore = defineStore('user',() => {
     account,
     getAccount,
     profile,
-    getUserDetail
+    getUserDetail,
+    userPlaylist
   }
 })

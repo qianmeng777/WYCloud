@@ -8,9 +8,13 @@ const DRIVE_LETTER_REGEX = /^[a-zA-Z]:/i
 export default defineConfig({
   plugins: [uni()],
   base: '/WYCloud',
-  // server: {
-  //   hmr: true,  // 确保热重载开启
-  // }
+  server: {
+    watch: {
+      usePolling: true,  // 启用轮询机制，确保文件更改能被检测到
+      interval: 100,     // 设置轮询间隔为 100ms
+    },
+    hmr: true,
+  },
   build: {
     rollupOptions: {
       output: {

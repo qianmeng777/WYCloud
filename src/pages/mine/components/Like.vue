@@ -1,6 +1,8 @@
 <template>
   <!-- 我喜欢区域 -->
+  
   <view class="bottom">
+    <navigator url="/pages/songslist/songslist">
     <view class="like">
       <view class="like1">
           <view class="like-pic"><image src="../../../static/like.png" alt="" /></view>
@@ -10,7 +12,7 @@
           </view>
       </view>
     </view>
-
+    </navigator>
     <!-- 新建歌单 -->
     <view class="like">
       <view class="like1">
