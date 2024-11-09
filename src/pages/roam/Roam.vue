@@ -25,10 +25,10 @@
 </template>
 
 <script setup>
- import { ref,onMounted } from 'vue'
- import { recommendSongsApi,getSongsApi,getplaylistApi} from '../../services/index'
+//  import { ref,onMounted } from 'vue'
+//  import { recommendSongsApi,getSongsApi,getplaylistApi} from '../../services/index'
 
- const picstab=ref("false")
+//  const picstab=ref("false")
 
 //  const resource = ref([])
 //  let curindex = ref(1)
