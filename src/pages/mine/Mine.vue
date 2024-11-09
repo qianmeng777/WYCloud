@@ -1,6 +1,6 @@
 <template>
   <!-- 头部区域 -->
-  <view class="header" :style="{ backgroundImage: userStore.profile && userStore.profile.backgroundUrl ? `url(${userStore.profile.backgroundUrl})` : 'url(../../static/15419466901131584.png)' }">
+  <view class="header" :style="{ backgroundImage: userStore.profile && userStore.profile.backgroundUrl ? `url(${userStore.profile.backgroundUrl})` :'url(../../static/15419466901131584.png)'}">
     <image :src="userStore.profile && userStore.profile.avatarUrl ? userStore.profile.avatarUrl : '../../static/草莓.png'" class="avatar" />
     <navigator url="/pages/login/login" class="login">立即登录 ></navigator>
     <view  class="username">{{ userStore.profile ? userStore.profile.nickname || '用户名' : '用户名' }}</view> <!-- 显示用户名 -->
