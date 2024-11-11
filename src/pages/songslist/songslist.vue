@@ -1,12 +1,12 @@
 <template>
     <view class="nav-bar">
-        <view class="back-button" @click="goToTabBarPage">&lt;</view>
+        <view class="back-button" @click="goToTabBarPage"><uni-icons type="back" size="30" color="#000"></uni-icons></view>
         <text class="nav-title">歌单</text>
     </view>
     <view class="header">
-      <div class="bg" :style="{ backgroundImage: `url('https://p1.music.126.net/9-rm4PUkKuL-lD1Rgg6SDw==/109951165434984508.jpg')` }">
+      <view class="bg" :style="{ backgroundImage: `url('https://p1.music.126.net/9-rm4PUkKuL-lD1Rgg6SDw==/109951165434984508.jpg')` }">
         <view class="after"></view>
-      </div>
+      </view>
       <view class="header-content">
         <view class="info">
           <image :src="'https://p1.music.126.net/9-rm4PUkKuL-lD1Rgg6SDw==/109951165434984508.jpg'" mode="widthFix"></image>
@@ -63,7 +63,7 @@
             </view>
           </template>
           <template v-slot:footer>
-            <view class="right-text">把回忆拼好给你</view>
+            <view class="right-text">0.1</view>
           </template>
         </uni-list-item>
       </uni-list>

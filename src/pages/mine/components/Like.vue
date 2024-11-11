@@ -76,7 +76,7 @@
   color: #000;
 }
 
-.like-desc{
+.like-desc {
   flex: 1;
   font-size: 25rpx;
   padding-left: 30rpx;

@@ -9,10 +9,10 @@
     <navigator v-else url="/pages/login/login" class="login">立即登录 ></navigator>
     <view class="desc">
     <view class="center">
-      <view class="p">关注</view>
-      <view class="p">粉丝</view>
-      <view class="p">等级</view>
-      <view class="p">听歌</view>
+      <view class="p"> <text>{{ userStore.profile?.follows }}</text> 关注</view>
+      <view class="p"> <text> {{ userStore.profile?.followeds }} </text> 粉丝</view>
+      <view class="p"> <text>LV {{ userStore.profile?.level }} </text> 等级</view>
+      <view class="p"> <text> {{ userStore.profile?.listenSongs }} </text> 听歌</view>
     </view>
     </view>
   </view>
@@ -97,7 +97,8 @@
   align-items: center;
   padding: 0 40rpx;
   .p{
-    margin: 0 40rpx;
+    width: auto;
+    margin: 0 10rpx;
     font-size: 28rpx;
     font-weight: 900;
     background: linear-gradient(to right, #00B4D8, #006B8E); /* 渐变背景 */
@@ -146,7 +147,7 @@
   position: relative;
   top: 15%;
   left: 42%;
-  width: 150rpx;
+  width: 150rpx;      
   height: 50rpx;
   font-size: 28rpx;
   font-weight: 900;

@@ -11,6 +11,7 @@ export const useUserStore = defineStore('user',() => {
   const getUserDetail = async () => {
     const res = await userDetailApi(account.value.id)
     console.log(res.data.profile)
+    console.log(res.data)
     profile.value = {
       ...res.data.profile,
       level: res.data.level,
@@ -18,7 +19,7 @@ export const useUserStore = defineStore('user',() => {
       createDays: res.data.createDays,
     }
   }
-
+  
   // 用户歌单
   const userPlaylist = async () => {
     const res = await userPlaylistApi(account.value.id)

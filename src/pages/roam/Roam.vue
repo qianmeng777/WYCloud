@@ -284,6 +284,6 @@ onMounted(
 }
 
 .big .img image {
-  animation: spin 0.00001s linear infinite; /* 10秒内完成一次旋转，线性速度，无限循环 */
+  animation: spin 10s linear infinite; /* 10秒内完成一次旋转，线性速度，无限循环 */
 }
 </style>
