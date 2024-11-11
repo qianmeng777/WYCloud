@@ -5,8 +5,12 @@
         <view class="popup-content">
           <view class="header">
             <veiw class="top">
-              <view class="current">当前播放</view> 
-              <view class="history">历史播放</view> 
+              <view class="current" 
+              :class="{ active: activeTab === 'current' }" 
+              @click="showCurrentList">当前播放</view> 
+              <view class="history" 
+              :class="{ active: activeTab === 'history' }"
+               @click="showHistoryList">历史播放</view> 
             </veiw>
             <view class="function">
               <view class="playType">
@@ -21,7 +25,7 @@
               </view>
             </view>
           </view>
-          <view class="list">
+          <view class="list" v-if="activeTab === 'current'">
             <view class="listItem" v-for="item in dailySongs">
               <view class="songInfo">
                  <view class="songName">{{ item.name }}</view>
@@ -30,6 +34,17 @@
               <view>×</view>
             </view>
           </view>
+
+          <view class="list" v-else>
+            <view class="listItem" v-for="item in dailySongs">
+              <view class="songInfo">
+                 <view class="songName">{{ item.name }}</view>
+                 <view class="songer"> · {{ item.ar[0].name }}</view> 
+              </view>
+              <view>×</view>
+            </view>
+          </view>
+
         </view>
       </uni-popup>
     </view>
@@ -64,7 +79,8 @@ import { useSongStore } from '../stores/SongList';
 
 
 const bottomPopup = ref(null);
-
+// const currentList = ref('current');
+const activeTab = ref('current'); 
 // 打开底部弹出层
 const openBottomPopup = () => {
   bottomPopup.value.open();
@@ -128,6 +144,14 @@ const goRoam = () => {
       });
   };
 
+const showCurrentList = () => {
+activeTab.value = 'current';
+};
+
+const showHistoryList = () => {
+  activeTab.value = 'history';
+};
+
 
 </script>
 
@@ -146,8 +170,8 @@ const goRoam = () => {
     background: #FFFFFF;
     position: relative;
     .popup-content{
-      background-image: linear-gradient(to bottom right, pink, purple);
-
+      // background-image: linear-gradient(to bottom right, pink, purple);
+      background-image: linear-gradient(to bottom right,rgb(230, 211, 242), rgb(245, 183, 192));
       height: 800rpx;
       width: 100vw;
       position: absolute;
@@ -162,14 +186,20 @@ const goRoam = () => {
         border-bottom: 1rpx solid #ccc;
           .current{
             margin-right: 90rpx;
+            cursor: pointer;
             // background: pink;
+            color: #626262;
             padding-bottom: 20rpx;
-            border-bottom: 1rpx solid #000000;
+            transition: border-bottom 10s ease!important;
+            // border-bottom: 1rpx solid #000000;
           }
           .history{
+            color: #626262;
+            cursor: pointer;
+            transition: border-bottom 10                                                                                                                                                                                                                                                    s ease!important;
             // background: pink;
             // padding-bottom: 20rpx;
-            border-bottom: 1rpx solid #000000;
+            // border-bottom: 1rpx solid #000000;
           }
         }
         .function{
@@ -284,7 +314,7 @@ const goRoam = () => {
             margin-top: 5rpx;
         }
     }
-    .list{
+    .list , .list2{
       padding: 0 25rpx;
       overflow: auto;
       height: calc(100% - 200rpx);
@@ -313,4 +343,8 @@ const goRoam = () => {
       }
     }
   }
+  .active {
+      border-bottom: 1rpx solid #000000;
+      color: #000000!important;
+    }
 </style>
